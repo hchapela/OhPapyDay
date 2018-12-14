@@ -2,14 +2,15 @@ class Game {
     constructor() {
         console.log('New Game');
         // Get HTML Elements
+        // erase span here
         this.$statuses = document.querySelector('.js-statuses')
-        this.$tired = this.$statuses.querySelector('.js-tired')
-        this.$bored = this.$statuses.querySelector('.js-bored')
-        this.$sad = this.$statuses.querySelector('.js-sad')
+        this.$tired = this.$statuses.querySelector('.js-tired span')
+        this.$bored = this.$statuses.querySelector('.js-bored span')
+        this.$sad = this.$statuses.querySelector('.js-sad span')
         this.$main = document.querySelector('.js-main')
-        this.$score = this.$main.querySelector('.js-score')
+        this.$score = this.$main.querySelector('.js-score span')
         this.$picture = this.$main.querySelector('.js-picture')
-        this.$time = this.$main.querySelector('.js-time')
+        this.$time = this.$main.querySelector('.js-time span')
         this.$controls = document.querySelector('.controls')
         this.$tv = this.$controls.querySelector('.js-tv')
         this.$cook = this.$controls.querySelector('.js-cook')
@@ -17,15 +18,80 @@ class Game {
         this.$phone = this.$controls.querySelector('.js-phone')
         // Get variables
         this.score = 0
-        this.timeLeft = 10
+        this.timeLeft = 30
         this.tired = 0
         this.bored = 0
         this.sad = 0
-        this.initGame()
+        this.difficulty = 1
 
+        // Fix scope issues with methods
+        this.initScope()
+        // Init Game
+        this.initGame()
+        this.initButtons()
+    }
+
+    initScope() {
+        this.tick = this.tick.bind(this)
+        this.tvAction = this.tvAction.bind(this)
     }
 
     initGame() {
+        // Put game variables in HTML
+        this.changeValues()
+
+        // First tick
+        this.isPlaying = window.setInterval(this.tick, 1000)
+    }
+
+    changeValues() {
+        this.$score.textContent = this.score
+        this.$time.textContent = this.timeLeft
+        this.$bored.textContent = this.bored
+        this.$tired.textContent = this.tired
+        this.$sad.textContent = this.sad
+    }
+
+    tick() {
+        // Chec if game is Loosed
+        if (this.timeLeft === 1 ||
+            this.bored > 100 ||
+            this.tired > 100 ||
+            this.sad > 100
+        ) {
+            window.clearInterval(this.isPlaying)
+            console.log('This is the end');
+        }
+        // One tick
+        this.timeLeft -= 1
+        this.difficulty++
+        this.bored = this.bored + (1 * this.difficulty) + Math.floor(Math.random() * 5)
+        this.tired = this.tired + (1 * this.difficulty) + Math.floor(Math.random() * 5)
+        this.sad = this.sad + (1 * this.difficulty) + Math.floor(Math.random() * 5)
+        this.changeValues()
+    }
+
+    initButtons() {
+        this.$tv.addEventListener('click', this.tvAction)
+        this.$goOut.addEventListener('click', this.goOutAction)
+        this.$cook.addEventListener('click', this.cookAction)
+        this.$phone.addEventListener('click', this.phoneAction)
+    }
+
+    tvAction() {
+        this.score += 10
+    }
+
+    goOutAction() {
+        this.score += 10
+    }
+
+    cookAction() {
+        this.score += 10
+    }
+
+    phoneAction() {
+        this.score += 10
     }
 }
 
