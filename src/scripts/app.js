@@ -6,7 +6,7 @@ class Game {
         this.$statuses = document.querySelector('.js-statuses')
         this.$tired = this.$statuses.querySelector('.js-tired span')
         this.$bored = this.$statuses.querySelector('.js-bored span')
-        this.$sad = this.$statuses.querySelector('.js-sad span')
+        this.$lonely = this.$statuses.querySelector('.js-lonely span')
         this.$main = document.querySelector('.js-main')
         this.$score = this.$main.querySelector('.js-score span')
         this.$picture = this.$main.querySelector('.js-picture')
@@ -21,7 +21,7 @@ class Game {
         this.timeLeft = 30
         this.tired = 0
         this.bored = 0
-        this.sad = 0
+        this.lonely = 0
         this.difficulty = 1
 
         // Fix scope issues with methods
@@ -34,6 +34,10 @@ class Game {
     initScope() {
         this.tick = this.tick.bind(this)
         this.tvAction = this.tvAction.bind(this)
+        this.goOutAction = this.goOutAction.bind(this)
+        this.cookAction = this.cookAction.bind(this)
+        this.phoneAction = this.phoneAction.bind(this)
+        this.isLoosed = this.isLoosed.bind(this)
     }
 
     initGame() {
@@ -49,26 +53,30 @@ class Game {
         this.$time.textContent = this.timeLeft
         this.$bored.textContent = this.bored
         this.$tired.textContent = this.tired
-        this.$sad.textContent = this.sad
+        this.$lonely.textContent = this.lonely
     }
 
     tick() {
         // Chec if game is Loosed
-        if (this.timeLeft === 1 ||
-            this.bored > 100 ||
-            this.tired > 100 ||
-            this.sad > 100
-        ) {
-            window.clearInterval(this.isPlaying)
-            console.log('This is the end');
-        }
+        this.isLoosed()
         // One tick
         this.timeLeft -= 1
         this.difficulty++
         this.bored = this.bored + (1 * this.difficulty) + Math.floor(Math.random() * 5)
         this.tired = this.tired + (1 * this.difficulty) + Math.floor(Math.random() * 5)
-        this.sad = this.sad + (1 * this.difficulty) + Math.floor(Math.random() * 5)
+        this.lonely = this.lonely + (1 * this.difficulty) + Math.floor(Math.random() * 5)
         this.changeValues()
+    }
+
+    isLoosed() {
+        if (this.timeLeft === 1 ||
+            this.bored + this.difficulty > 100 ||
+            this.tired + this.difficulty > 100 ||
+            this.lonely + this.difficulty > 100
+        ) {
+            window.clearInterval(this.isPlaying)
+            console.log('This is the end');
+        }
     }
 
     initButtons() {
@@ -79,19 +87,35 @@ class Game {
     }
 
     tvAction() {
-        this.score += 10
+        this.score += 100
+        this.tired -= 30
+        this.bored += 20
+        this.lonely += 20
+        this.changeValues()
     }
 
     goOutAction() {
-        this.score += 10
+        this.score += 800
+        this.tired += 30
+        this.bored -= 20
+        this.lonely -= 10
+        this.changeValues()
     }
 
     cookAction() {
-        this.score += 10
+        this.score += 250
+        this.tired += 20
+        this.bored -= 10
+        this.lonely += 10
+        this.changeValues()
     }
 
     phoneAction() {
-        this.score += 10
+        this.score += 400
+        this.tired -= 20
+        this.bored -= 10
+        this.lonely -= 20
+        this.changeValues()
     }
 }
 
