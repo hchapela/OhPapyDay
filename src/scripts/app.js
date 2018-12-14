@@ -1,69 +1,33 @@
-class Card {
-    constructor(_card) {
+class Game {
+    constructor() {
+        console.log('New Game');
+        // Get HTML Elements
+        this.$statuses = document.querySelector('.js-statuses')
+        this.$tired = this.$statuses.querySelector('.js-tired')
+        this.$bored = this.$statuses.querySelector('.js-bored')
+        this.$sad = this.$statuses.querySelector('.js-sad')
+        this.$main = document.querySelector('.js-main')
+        this.$score = this.$main.querySelector('.js-score')
+        this.$picture = this.$main.querySelector('.js-picture')
+        this.$time = this.$main.querySelector('.js-time')
+        this.$controls = document.querySelector('.controls')
+        this.$tv = this.$controls.querySelector('.js-tv')
+        this.$cook = this.$controls.querySelector('.js-cook')
+        this.$goOut = this.$controls.querySelector('.js-go-out')
+        this.$phone = this.$controls.querySelector('.js-phone')
+        // Get variables
+        this.score = 0
+        this.timeLeft = 10
+        this.tired = 0
+        this.bored = 0
+        this.sad = 0
+        this.initGame()
 
-        // initialization
-        this.initSize(_card)
-        this.initImage(_card)
-        this.initLabel(_card)
-
-        // Interaction
-        this.expandImage(_card)
     }
 
-    initSize(_card) {
-        _card.style.width = _card.dataset.width
-        _card.style.height = _card.dataset.height
-
-    }
-
-    initImage(_card) {
-        const cardImage = document.createElement('img')
-        cardImage.classList.add('card__Picture')
-
-        cardImage.setAttribute('src', _card.dataset.src)
-        _card.appendChild(cardImage)
-    }
-
-    initLabel(_card) {
-        const cardLabel = document.createElement('div')
-        cardLabel.classList.add('card__Label')
-
-        // init Title
-        const cardLabelTitle = document.createElement('p')
-        cardLabelTitle.classList.add('card__Label__Title')
-        cardLabelTitle.innerText = _card.dataset.title
-
-        // init Dimensions
-        const cardLabelDimensions = document.createElement('p')
-        cardLabelDimensions.classList.add('card__Label__Dimensions')
-        cardLabelDimensions.innerText = `${_card.dataset.width}x ${_card.dataset.height}`
-
-        // Import in html
-        _card.appendChild(cardLabel)
-        const $label = _card.querySelector('.card__Label')
-        $label.appendChild(cardLabelTitle)
-        $label.appendChild(cardLabelDimensions)
-    }
-
-    expandImage(_card) {
-        let isOpened = false
-        _card.addEventListener('click', () => {
-            if (isOpened) {
-                _card.classList.remove('is-opened')
-                isOpened = false
-            } else {
-                _card.classList.add('is-opened')
-                isOpened = true
-            }
-        })
+    initGame() {
     }
 }
 
-const $gallery = document.querySelector('.js-gallery')
-const $cards = document.querySelectorAll('.js-card')
-
-
-for (const card of $cards) {
-    new Card(card)
-
-}
+const game = new Game()
+console.log(game);
