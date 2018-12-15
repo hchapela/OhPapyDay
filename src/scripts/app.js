@@ -16,6 +16,7 @@ class Game {
         this.$cook = this.$controls.querySelector('.js-cook')
         this.$goOut = this.$controls.querySelector('.js-go-out')
         this.$phone = this.$controls.querySelector('.js-phone')
+
         // Get variables
         this.score = 0
         this.timeLeft = 30
@@ -33,11 +34,11 @@ class Game {
 
     initScope() {
         this.tick = this.tick.bind(this)
+        this.isLoosed = this.isLoosed.bind(this)
         this.tvAction = this.tvAction.bind(this)
         this.goOutAction = this.goOutAction.bind(this)
         this.cookAction = this.cookAction.bind(this)
         this.phoneAction = this.phoneAction.bind(this)
-        this.isLoosed = this.isLoosed.bind(this)
     }
 
     initGame() {
@@ -134,7 +135,7 @@ class Game {
             this.setCoolDown('phone')
         }
     }
-
+// test
     setCoolDown(action) {
         switch (action) {
             case 'tv':
@@ -163,11 +164,7 @@ class Game {
                 break
         }
     }
-
-
 }
-
-
 
 const game = new Game()
 console.log(game);

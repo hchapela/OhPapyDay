@@ -61,11 +61,11 @@
 
       initScope() {
         this.tick = this.tick.bind(this);
+        this.isLoosed = this.isLoosed.bind(this);
         this.tvAction = this.tvAction.bind(this);
         this.goOutAction = this.goOutAction.bind(this);
         this.cookAction = this.cookAction.bind(this);
         this.phoneAction = this.phoneAction.bind(this);
-        this.isLoosed = this.isLoosed.bind(this);
       }
 
       initGame() {
@@ -155,7 +155,8 @@
           this.changeValues();
           this.setCoolDown('phone');
         }
-      }
+      } // test
+
 
       setCoolDown(action) {
         switch (action) {
