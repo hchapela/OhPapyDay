@@ -115,6 +115,7 @@
         this.bored += 20;
         this.lonely += 20;
         this.changeValues();
+        this.setCoolDown('tv');
       }
 
       goOutAction() {
@@ -123,6 +124,7 @@
         this.bored -= 20;
         this.lonely -= 10;
         this.changeValues();
+        this.setCoolDown('goOut');
       }
 
       cookAction() {
@@ -131,6 +133,7 @@
         this.bored -= 10;
         this.lonely += 10;
         this.changeValues();
+        this.setCoolDown('cook');
       }
 
       phoneAction() {
@@ -139,6 +142,15 @@
         this.bored -= 10;
         this.lonely -= 20;
         this.changeValues();
+        this.setCoolDown('phone');
+      }
+
+      setCoolDown(action) {
+        switch (action) {
+          case 'tv':
+            this.cool;
+            break;
+        }
       }
 
     }

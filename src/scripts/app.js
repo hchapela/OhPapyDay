@@ -92,6 +92,7 @@ class Game {
         this.bored += 20
         this.lonely += 20
         this.changeValues()
+        this.setCoolDown('tv')
     }
 
     goOutAction() {
@@ -100,6 +101,7 @@ class Game {
         this.bored -= 20
         this.lonely -= 10
         this.changeValues()
+        this.setCoolDown('goOut')
     }
 
     cookAction() {
@@ -108,6 +110,7 @@ class Game {
         this.bored -= 10
         this.lonely += 10
         this.changeValues()
+        this.setCoolDown('cook')
     }
 
     phoneAction() {
@@ -116,8 +119,21 @@ class Game {
         this.bored -= 10
         this.lonely -= 20
         this.changeValues()
+        this.setCoolDown('phone')
     }
+
+    setCoolDown(action) {
+        switch (action) {
+            case 'tv':
+                this.cool
+                break
+        }
+    }
+
+
 }
+
+
 
 const game = new Game()
 console.log(game);
