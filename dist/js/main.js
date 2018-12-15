@@ -107,48 +107,84 @@
         this.$goOut.addEventListener('click', this.goOutAction);
         this.$cook.addEventListener('click', this.cookAction);
         this.$phone.addEventListener('click', this.phoneAction);
+        this.tvActive = true;
+        this.goOutActive = true;
+        this.cookActive = true;
+        this.phoneActive = true;
       }
 
       tvAction() {
-        this.score += 100;
-        this.tired -= 30;
-        this.bored += 20;
-        this.lonely += 20;
-        this.changeValues();
-        this.setCoolDown('tv');
+        if (this.tvActive) {
+          this.score += 100;
+          this.tired -= 30;
+          this.bored += 20;
+          this.lonely += 20;
+          this.changeValues();
+          this.setCoolDown('tv');
+        }
       }
 
       goOutAction() {
-        this.score += 800;
-        this.tired += 30;
-        this.bored -= 20;
-        this.lonely -= 10;
-        this.changeValues();
-        this.setCoolDown('goOut');
+        if (this.goOutActive) {
+          this.score += 800;
+          this.tired += 30;
+          this.bored -= 20;
+          this.lonely -= 10;
+          this.changeValues();
+          this.setCoolDown('goOut');
+        }
       }
 
       cookAction() {
-        this.score += 250;
-        this.tired += 20;
-        this.bored -= 10;
-        this.lonely += 10;
-        this.changeValues();
-        this.setCoolDown('cook');
+        if (this.cookActive) {
+          this.score += 250;
+          this.tired += 20;
+          this.bored -= 10;
+          this.lonely += 10;
+          this.changeValues();
+          this.setCoolDown('cook');
+        }
       }
 
       phoneAction() {
-        this.score += 400;
-        this.tired -= 20;
-        this.bored -= 10;
-        this.lonely -= 20;
-        this.changeValues();
-        this.setCoolDown('phone');
+        if (this.phoneActive) {
+          this.score += 400;
+          this.tired -= 20;
+          this.bored -= 10;
+          this.lonely -= 20;
+          this.changeValues();
+          this.setCoolDown('phone');
+        }
       }
 
       setCoolDown(action) {
         switch (action) {
           case 'tv':
-            this.cool;
+            this.tvActive = false;
+            window.setTimeout(() => {
+              this.tvActive = true;
+            }, 1000);
+            break;
+
+          case 'goOut':
+            this.goOutActive = false;
+            window.setTimeout(() => {
+              this.goOutActive = true;
+            }, 6000);
+            break;
+
+          case 'cook':
+            this.cookActive = false;
+            window.setTimeout(() => {
+              this.cookActive = true;
+            }, 4000);
+            break;
+
+          case 'phone':
+            this.phoneActive = false;
+            window.setTimeout(() => {
+              this.phoneActive = true;
+            }, 6000);
             break;
         }
       }
