@@ -30,12 +30,11 @@
     class Game {
       constructor() {
         console.log('New Game'); // Get HTML Elements
-        // erase span here
 
         this.$statuses = document.querySelector('.js-statuses');
-        this.$tired = this.$statuses.querySelector('.js-tired span');
-        this.$bored = this.$statuses.querySelector('.js-bored span');
-        this.$lonely = this.$statuses.querySelector('.js-lonely span');
+        this.$tired = this.$statuses.querySelector('.js-tired');
+        this.$bored = this.$statuses.querySelector('.js-bored');
+        this.$lonely = this.$statuses.querySelector('.js-lonely');
         this.$main = document.querySelector('.js-main');
         this.$score = this.$main.querySelector('.js-score span');
         this.$picture = this.$main.querySelector('.js-picture');
@@ -57,6 +56,8 @@
 
         this.initGame();
         this.initButtons();
+        this.initTick();
+        this.initBonus();
       }
 
       initScope() {
@@ -66,6 +67,8 @@
         this.goOutAction = this.goOutAction.bind(this);
         this.cookAction = this.cookAction.bind(this);
         this.phoneAction = this.phoneAction.bind(this);
+        this.bonusCard = this.bonusCard.bind(this);
+        this.initTick = this.initTick.bind(this);
       }
 
       initGame() {
@@ -76,11 +79,13 @@
       }
 
       changeValues() {
+        this.$tired.style.transform = `scaleX(${this.tired / 100})`;
+        this.$bored.style.transform = `scaleX(${this.bored / 100})`;
+        this.$lonely.style.transform = `scaleX(${this.lonely / 100})`;
         this.$score.textContent = this.score;
-        this.$time.textContent = this.timeLeft;
-        this.$bored.textContent = this.bored;
-        this.$tired.textContent = this.tired;
-        this.$lonely.textContent = this.lonely;
+        this.$time.textContent = this.timeLeft; // this.$bored.textContent = this.bored
+        // this.$tired.textContent = this.tired
+        // this.$lonely.textContent = this.lonely
       }
 
       tick() {
@@ -89,10 +94,13 @@
 
         this.timeLeft -= 1;
         this.difficulty++;
-        this.bored = this.bored + 1 * this.difficulty + Math.floor(Math.random() * 5);
-        this.tired = this.tired + 1 * this.difficulty + Math.floor(Math.random() * 5);
-        this.lonely = this.lonely + 1 * this.difficulty + Math.floor(Math.random() * 5);
+        this.bored = this.bored + this.difficulty + Math.floor(Math.random() * 2);
+        this.tired = this.tired + this.difficulty + Math.floor(Math.random() * 2);
+        this.lonely = this.lonely + this.difficulty + Math.floor(Math.random() * 2);
         this.changeValues();
+      }
+
+      initTick() {// window.requestAnimationFrame(this.tick)
       }
 
       isLoosed() {
@@ -155,8 +163,7 @@
           this.changeValues();
           this.setCoolDown('phone');
         }
-      } // test
-
+      }
 
       setCoolDown(action) {
         switch (action) {
@@ -188,6 +195,14 @@
             }, 6000);
             break;
         }
+      }
+
+      initBonus() {
+        const intervalCards = window.setInterval(this.bonusCard, 5000);
+      }
+
+      bonusCard() {
+        console.log('card!');
       }
 
     }
