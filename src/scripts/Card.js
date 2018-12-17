@@ -9,8 +9,8 @@ module.exports = class Card {
     }
 
     newCard() {
-        this.newCard = document.createElement(div)
-        
+        this.newCard = document.createElement('div')
+        this.newCard.classList.add('card-event')
     }
 
     initCards() {

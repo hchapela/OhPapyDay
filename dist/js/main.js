@@ -37,7 +37,8 @@
       }
 
       newCard() {
-        this.newCard = document.createElement(div);
+        this.newCard = document.createElement('div');
+        this.newCard.classList.add('card-event');
       }
 
       initCards() {
@@ -76,24 +77,38 @@
   return s;
 })({
   1: [function (require, module, exports) {
+    /* TODO
+        show Bonuses icons
+        Better dom manipulation
+    */
     module.exports = class Shop {
-      constructor(game) {
+      constructor(_game) {
+        this.game = _game;
         this.$shop = document.querySelector('.js-shop');
         this.$shopButton = this.$shop.querySelector('.js-open-shop');
         this.$shopItems = this.$shop.querySelector('.js-shop-items');
-        this.$item1 = this.$shop.querySelector('.js-item-1');
+        this.$smartTv = this.$shop.querySelector('.js-smart-tv');
+        this.$smartPhone = this.$shop.querySelector('.js-smartphone');
+        this.$scooter = this.$shop.querySelector('.js-scooter');
+        this.$cooker = this.$shop.querySelector('.js-cooker');
         this.isClosed = true;
+        this.smartTv = false;
+        this.smartPhone = false;
+        this.scooter = false;
+        this.cooker = false;
         this.initScope();
-        this.initShop();
+        this.toggleShop();
         this.initBonuses();
         this.initItems();
       }
 
+      showBonus() {}
+
       initScope() {
-        this.smartTv = this.smartTv.bind(this);
+        this.toggleShop = this.toggleShop.bind(this);
       }
 
-      initShop() {
+      toggleShop() {
         this.$shopButton.addEventListener('click', () => {
           if (this.isClosed) {
             this.isClosed = false;
@@ -132,17 +147,82 @@
         };
       }
 
-      smartTv() {
-        this.tvBonus = {
-          score: 30,
-          tired: -20,
-          bored: -10,
-          lonely: -10
-        };
-      }
-
       initItems() {
-        this.$item1.addEventListener('click', this.smartTv);
+        this.$smartTv.addEventListener('click', () => {
+          const cost = 5000;
+
+          if (this.game.score > cost && !this.smartTV) {
+            // Close shop after buying anything
+            this.isClosed = true;
+            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+
+            this.game.score -= cost; // Iterm cost and bonuses implemented
+
+            this.tvBonus = {
+              score: 30,
+              tired: -20,
+              bored: -10,
+              lonely: -10
+            };
+          }
+        });
+        this.$smartPhone.addEventListener('click', () => {
+          const cost = 5000;
+
+          if (this.game.score > cost && !this.smartPhone) {
+            // Close shop after buying anything
+            this.isClosed = true;
+            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+
+            this.smartPhone = true; // Iterm cost and bonuses implemented
+
+            this.game.score -= cost;
+            this.phoneBonus = {
+              score: 30,
+              tired: -20,
+              bored: -10,
+              lonely: -10
+            };
+          }
+        });
+        this.$scooter.addEventListener('click', () => {
+          const cost = 5000;
+
+          if (this.game.score > cost && !this.scooter) {
+            // Close shop after buying anything
+            this.isClosed = true;
+            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+
+            this.scooter = true; // Iterm cost and bonuses implemented
+
+            this.game.score -= cost;
+            this.goOutBonus = {
+              score: 30,
+              tired: -20,
+              bored: -10,
+              lonely: -10
+            };
+          }
+        });
+        this.$cooker.addEventListener('click', () => {
+          const cost = 5000;
+
+          if (this.game.score > cost && !this.cooker) {
+            // Close shop after buying anything
+            this.isClosed = true;
+            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+
+            this.cooker = true; // Iterm cost and bonuses implemented
+
+            this.game.score -= cost;
+            this.cookBonus = {
+              score: 30,
+              tired: -20,
+              bored: -10,
+              lonely: -10
+            };
+          }
+        });
       }
 
     };
@@ -187,7 +267,8 @@
       }
 
       newCard() {
-        this.newCard = document.createElement(div);
+        this.newCard = document.createElement('div');
+        this.newCard.classList.add('card-event');
       }
 
       initCards() {
@@ -197,24 +278,38 @@
     };
   }, {}],
   2: [function (require, module, exports) {
+    /* TODO
+        show Bonuses icons
+        Better dom manipulation
+    */
     module.exports = class Shop {
-      constructor(game) {
+      constructor(_game) {
+        this.game = _game;
         this.$shop = document.querySelector('.js-shop');
         this.$shopButton = this.$shop.querySelector('.js-open-shop');
         this.$shopItems = this.$shop.querySelector('.js-shop-items');
-        this.$item1 = this.$shop.querySelector('.js-item-1');
+        this.$smartTv = this.$shop.querySelector('.js-smart-tv');
+        this.$smartPhone = this.$shop.querySelector('.js-smartphone');
+        this.$scooter = this.$shop.querySelector('.js-scooter');
+        this.$cooker = this.$shop.querySelector('.js-cooker');
         this.isClosed = true;
+        this.smartTv = false;
+        this.smartPhone = false;
+        this.scooter = false;
+        this.cooker = false;
         this.initScope();
-        this.initShop();
+        this.toggleShop();
         this.initBonuses();
         this.initItems();
       }
 
+      showBonus() {}
+
       initScope() {
-        this.smartTv = this.smartTv.bind(this);
+        this.toggleShop = this.toggleShop.bind(this);
       }
 
-      initShop() {
+      toggleShop() {
         this.$shopButton.addEventListener('click', () => {
           if (this.isClosed) {
             this.isClosed = false;
@@ -253,17 +348,82 @@
         };
       }
 
-      smartTv() {
-        this.tvBonus = {
-          score: 30,
-          tired: -20,
-          bored: -10,
-          lonely: -10
-        };
-      }
-
       initItems() {
-        this.$item1.addEventListener('click', this.smartTv);
+        this.$smartTv.addEventListener('click', () => {
+          const cost = 5000;
+
+          if (this.game.score > cost && !this.smartTV) {
+            // Close shop after buying anything
+            this.isClosed = true;
+            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+
+            this.game.score -= cost; // Iterm cost and bonuses implemented
+
+            this.tvBonus = {
+              score: 30,
+              tired: -20,
+              bored: -10,
+              lonely: -10
+            };
+          }
+        });
+        this.$smartPhone.addEventListener('click', () => {
+          const cost = 5000;
+
+          if (this.game.score > cost && !this.smartPhone) {
+            // Close shop after buying anything
+            this.isClosed = true;
+            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+
+            this.smartPhone = true; // Iterm cost and bonuses implemented
+
+            this.game.score -= cost;
+            this.phoneBonus = {
+              score: 30,
+              tired: -20,
+              bored: -10,
+              lonely: -10
+            };
+          }
+        });
+        this.$scooter.addEventListener('click', () => {
+          const cost = 5000;
+
+          if (this.game.score > cost && !this.scooter) {
+            // Close shop after buying anything
+            this.isClosed = true;
+            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+
+            this.scooter = true; // Iterm cost and bonuses implemented
+
+            this.game.score -= cost;
+            this.goOutBonus = {
+              score: 30,
+              tired: -20,
+              bored: -10,
+              lonely: -10
+            };
+          }
+        });
+        this.$cooker.addEventListener('click', () => {
+          const cost = 5000;
+
+          if (this.game.score > cost && !this.cooker) {
+            // Close shop after buying anything
+            this.isClosed = true;
+            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+
+            this.cooker = true; // Iterm cost and bonuses implemented
+
+            this.game.score -= cost;
+            this.cookBonus = {
+              score: 30,
+              tired: -20,
+              bored: -10,
+              lonely: -10
+            };
+          }
+        });
       }
 
     };
@@ -393,10 +553,10 @@
 
       goOutAction() {
         if (this.goOutActive) {
-          this.score += 800;
-          this.tired += 30;
-          this.bored -= 20;
-          this.lonely -= 10;
+          this.score += 800 + this.shop.goOutBonus.score;
+          this.tired += 30 + this.shop.goOutBonus.tired;
+          this.bored -= 20 + this.shop.goOutBonus.bored;
+          this.lonely -= 10 + this.shop.goOutBonus.lonely;
           this.changeValues();
           this.setCoolDown('goOut');
         }
@@ -404,10 +564,10 @@
 
       cookAction() {
         if (this.cookActive) {
-          this.score += 250;
-          this.tired += 20;
-          this.bored -= 10;
-          this.lonely += 10;
+          this.score += 250 + this.shop.cookBonus.score;
+          this.tired += 20 + this.shop.cookBonus.tired;
+          this.bored -= 10 + this.shop.cookBonus.bored;
+          this.lonely += 10 + this.shop.cookBonus.lonely;
           this.changeValues();
           this.setCoolDown('cook');
         }
@@ -415,10 +575,10 @@
 
       phoneAction() {
         if (this.phoneActive) {
-          this.score += 400;
-          this.tired -= 20;
-          this.bored -= 10;
-          this.lonely -= 20;
+          this.score += 400 + this.shop.phoneBonus.score;
+          this.tired -= 20 + this.shop.phoneBonus.tired;
+          this.bored -= 10 + this.shop.phoneBonus.bored;
+          this.lonely -= 20 + this.shop.phoneBonus.lonely;
           this.changeValues();
           this.setCoolDown('phone');
         }

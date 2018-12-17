@@ -1,22 +1,39 @@
+/* TODO
+    show Bonuses icons
+    Better dom manipulation
+*/ 
+
 module.exports = class Shop {
-    constructor(game) {
+    constructor(_game) {
+        this.game = _game
         this.$shop = document.querySelector('.js-shop')
         this.$shopButton = this.$shop.querySelector('.js-open-shop')
         this.$shopItems = this.$shop.querySelector('.js-shop-items')
-        this.$item1 = this.$shop.querySelector('.js-item-1')
+        this.$smartTv = this.$shop.querySelector('.js-smart-tv')
+        this.$smartPhone = this.$shop.querySelector('.js-smartphone')
+        this.$scooter = this.$shop.querySelector('.js-scooter')
+        this.$cooker = this.$shop.querySelector('.js-cooker')
         this.isClosed = true
+        this.smartTv = false
+        this.smartPhone = false
+        this.scooter = false
+        this.cooker = false
 
         this.initScope()
-        this.initShop()
+        this.toggleShop()
         this.initBonuses()
         this.initItems()
     }
 
-    initScope() {
-        this.smartTv = this.smartTv.bind(this)
+    showBonus() {
+
     }
 
-    initShop() {
+    initScope() {
+        this.toggleShop = this.toggleShop.bind(this)
+    }
+
+    toggleShop() {
         this.$shopButton.addEventListener('click', () => {
             if (this.isClosed) {
                 this.isClosed = false
@@ -27,7 +44,7 @@ module.exports = class Shop {
             }
         })
     }
-    
+
     initBonuses() {
         this.tvBonus = {
             score: 0,
@@ -55,16 +72,80 @@ module.exports = class Shop {
         }
     }
 
-    smartTv() {
-        this.tvBonus = {
-            score: 30,
-            tired: -20,
-            bored: -10,
-            lonely: -10
-        }
-    }
-
     initItems() {
-        this.$item1.addEventListener('click', this.smartTv)
+        this.$smartTv.addEventListener('click', () => {
+            const cost = 5000
+            if (this.game.score > cost && !this.smartTV) {
+                // Close shop after buying anything
+                this.isClosed = true
+                this.$shopItems.classList.add('shop-hidden')
+                // Disable multiple buying for each item
+                this.game.score -= cost
+                // Iterm cost and bonuses implemented
+                this.tvBonus = {
+                    score: 30,
+                    tired: -20,
+                    bored: -10,
+                    lonely: -10
+                }
+            }
+
+        })
+        this.$smartPhone.addEventListener('click', () => {
+            const cost = 5000
+            if (this.game.score > cost && !this.smartPhone) {
+                // Close shop after buying anything
+                this.isClosed = true
+                this.$shopItems.classList.add('shop-hidden')
+                // Disable multiple buying for each item
+                this.smartPhone = true
+                // Iterm cost and bonuses implemented
+                this.game.score -= cost
+                this.phoneBonus = {
+                    score: 30,
+                    tired: -20,
+                    bored: -10,
+                    lonely: -10
+                }
+            }
+
+        })
+        this.$scooter.addEventListener('click', () => {
+            const cost = 5000
+            if (this.game.score > cost && !this.scooter) {
+                // Close shop after buying anything
+                this.isClosed = true
+                this.$shopItems.classList.add('shop-hidden')
+                // Disable multiple buying for each item
+                this.scooter = true
+                // Iterm cost and bonuses implemented
+                this.game.score -= cost
+                this.goOutBonus = {
+                    score: 30,
+                    tired: -20,
+                    bored: -10,
+                    lonely: -10
+                }
+            }
+
+        })
+        this.$cooker.addEventListener('click', () => {
+            const cost = 5000
+            if (this.game.score > cost && !this.cooker) {
+                // Close shop after buying anything
+                this.isClosed = true
+                this.$shopItems.classList.add('shop-hidden')
+                // Disable multiple buying for each item
+                this.cooker = true
+                // Iterm cost and bonuses implemented
+                this.game.score -= cost
+                this.cookBonus = {
+                    score: 30,
+                    tired: -20,
+                    bored: -10,
+                    lonely: -10
+                }
+            }
+        })
     }
 }

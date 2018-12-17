@@ -130,10 +130,10 @@ class Game {
 
     goOutAction() {
         if (this.goOutActive) {
-            this.score += 800
-            this.tired += 30
-            this.bored -= 20
-            this.lonely -= 10
+            this.score += 800 + this.shop.goOutBonus.score
+            this.tired += 30 + this.shop.goOutBonus.tired
+            this.bored -= 20 + this.shop.goOutBonus.bored
+            this.lonely -= 10 + this.shop.goOutBonus.lonely
             this.changeValues()
             this.setCoolDown('goOut')
         }
@@ -141,10 +141,10 @@ class Game {
 
     cookAction() {
         if (this.cookActive) {
-            this.score += 250
-            this.tired += 20
-            this.bored -= 10
-            this.lonely += 10
+            this.score += 250 + this.shop.cookBonus.score
+            this.tired += 20 + this.shop.cookBonus.tired
+            this.bored -= 10 + this.shop.cookBonus.bored
+            this.lonely += 10 + this.shop.cookBonus.lonely
             this.changeValues()
             this.setCoolDown('cook')
         }
@@ -152,10 +152,10 @@ class Game {
 
     phoneAction() {
         if (this.phoneActive) {
-            this.score += 400
-            this.tired -= 20
-            this.bored -= 10
-            this.lonely -= 20
+            this.score += 400 + this.shop.phoneBonus.score
+            this.tired -= 20 + this.shop.phoneBonus.tired
+            this.bored -= 10 + this.shop.phoneBonus.bored
+            this.lonely -= 20 + this.shop.phoneBonus.lonely
             this.changeValues()
             this.setCoolDown('phone')
         }

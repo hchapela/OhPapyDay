@@ -110,6 +110,9 @@ button.shop {
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative; }
+  .container .statuses p {
+    position: absolute;
+    top: -20px; }
   .container .statuses .level {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -121,7 +124,7 @@ button.shop {
             transform: translateY(-100%);
     width: 200px;
     height: 10px;
-    margin: 10px 0;
+    margin: 20px 0;
     background: white;
     -webkit-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
