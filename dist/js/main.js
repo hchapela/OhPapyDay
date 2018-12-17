@@ -78,7 +78,20 @@
         this.isPlaying = window.setInterval(this.tick, 1000);
       }
 
+      normalizeValue(value) {
+        if (value > 100) {
+          return 100;
+        } else if (value < 0) {
+          return 0;
+        }
+
+        return value;
+      }
+
       changeValues() {
+        this.tired = this.normalizeValue(this.tired);
+        this.bored = this.normalizeValue(this.bored);
+        this.lonely = this.normalizeValue(this.lonely);
         this.$tired.style.transform = `scaleX(${this.tired / 100})`;
         this.$bored.style.transform = `scaleX(${this.bored / 100})`;
         this.$lonely.style.transform = `scaleX(${this.lonely / 100})`;
