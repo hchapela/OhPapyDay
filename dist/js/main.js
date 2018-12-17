@@ -27,8 +27,15 @@
   return s;
 })({
   1: [function (require, module, exports) {
+    /* TODO
+        Create events
+        puts values on events random
+        how random they are
+        act on game
+    */
     module.exports = class Card {
       constructor(game) {
+        this.game = _game;
         this.initScope();
         this.initCards();
       }
@@ -80,6 +87,7 @@
     /* TODO
         show Bonuses icons
         Better dom manipulation
+        Pause the game while on shop
     */
     module.exports = class Shop {
       constructor(_game) {
@@ -257,8 +265,15 @@
   return s;
 })({
   1: [function (require, module, exports) {
+    /* TODO
+        Create events
+        puts values on events random
+        how random they are
+        act on game
+    */
     module.exports = class Card {
       constructor(game) {
+        this.game = _game;
         this.initScope();
         this.initCards();
       }
@@ -281,6 +296,7 @@
     /* TODO
         show Bonuses icons
         Better dom manipulation
+        Pause the game while on shop
     */
     module.exports = class Shop {
       constructor(_game) {
@@ -429,6 +445,10 @@
     };
   }, {}],
   3: [function (require, module, exports) {
+    /* TODO
+        Show cooldowns on buttons
+        
+    */
     const Shop = require('./Shop');
 
     const Card = require('./Card');

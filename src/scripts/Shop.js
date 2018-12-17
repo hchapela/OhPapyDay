@@ -1,6 +1,7 @@
 /* TODO
     show Bonuses icons
     Better dom manipulation
+    Pause the game while on shop
 */ 
 
 module.exports = class Shop {

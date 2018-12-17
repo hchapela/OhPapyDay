@@ -1,3 +1,8 @@
+/* TODO
+    Show cooldowns on buttons
+    
+*/ 
+
 const Shop = require('./Shop')
 const Card = require('./Card')
 

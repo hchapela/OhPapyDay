@@ -1,5 +1,13 @@
+/* TODO
+    Create events
+    puts values on events random
+    how random they are
+    act on game
+*/ 
+
 module.exports = class Card {
     constructor(game) {
+        this.game = _game
         this.initScope()
         this.initCards()
     }
