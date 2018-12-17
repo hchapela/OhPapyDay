@@ -23,6 +23,7 @@ class Game {
         this.bored = 0
         this.lonely = 0
         this.difficulty = 1
+        this.coolDownRatio = 0
 
         // Fix scope issues with methods
         this.initScope()
@@ -31,6 +32,7 @@ class Game {
         this.initButtons()
         this.initTick()
         this.initBonus()
+        const shop = new Shop(this)
     }
 
     initScope() {
@@ -54,6 +56,7 @@ class Game {
 
     normalizeValue(value) {
         if (value > 100) {
+
             return 100
         }
         else if (value < 0) {
@@ -72,9 +75,6 @@ class Game {
 
         this.$score.textContent = this.score
         this.$time.textContent = this.timeLeft
-        // this.$bored.textContent = this.bored
-        // this.$tired.textContent = this.tired
-        // this.$lonely.textContent = this.lonely
     }
 
     tick() {
@@ -83,9 +83,10 @@ class Game {
         // One tick
         this.timeLeft -= 1
         this.difficulty++
-        this.bored = this.bored + this.difficulty + Math.floor(Math.random() * 2)
-        this.tired = this.tired + this.difficulty + Math.floor(Math.random() * 2)
-        this.lonely = this.lonely + this.difficulty + Math.floor(Math.random() * 2)
+        this.coolDownRatio += 1000
+        this.bored = this.bored + this.difficulty
+        this.tired = this.tired + this.difficulty
+        this.lonely = this.lonely + this.difficulty
         this.changeValues()
     }
 
@@ -166,25 +167,25 @@ class Game {
                 this.tvActive = false
                 window.setTimeout(() => {
                     this.tvActive = true
-                }, 1000)
+                }, 1000 - this.coolDownRatio)
                 break
             case 'goOut':
                 this.goOutActive = false
                 window.setTimeout(() => {
                     this.goOutActive = true
-                }, 6000)
+                }, 6000 - this.coolDownRatio)
                 break
             case 'cook':
                 this.cookActive = false
                 window.setTimeout(() => {
                     this.cookActive = true
-                }, 4000)
+                }, 4000 - this.coolDownRatio)
                 break
             case 'phone':
                 this.phoneActive = false
                 window.setTimeout(() => {
                     this.phoneActive = true
-                }, 6000)
+                }, 6000 - this.coolDownRatio)
                 break
         }
     }
@@ -195,6 +196,12 @@ class Game {
 
     bonusCard() {
         console.log('card!');
+    }
+}
+
+class Shop {
+    constructor(game) {
+        this.$shopButton = document.querySelector('.js-shop')
     }
 }
 

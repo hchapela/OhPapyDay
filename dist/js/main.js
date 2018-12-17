@@ -50,7 +50,8 @@
         this.tired = 0;
         this.bored = 0;
         this.lonely = 0;
-        this.difficulty = 1; // Fix scope issues with methods
+        this.difficulty = 1;
+        this.coolDownRatio = 0; // Fix scope issues with methods
 
         this.initScope(); // Init Game
 
@@ -58,6 +59,7 @@
         this.initButtons();
         this.initTick();
         this.initBonus();
+        const shop = new Shop(this);
       }
 
       initScope() {
@@ -96,9 +98,7 @@
         this.$bored.style.transform = `scaleX(${this.bored / 100})`;
         this.$lonely.style.transform = `scaleX(${this.lonely / 100})`;
         this.$score.textContent = this.score;
-        this.$time.textContent = this.timeLeft; // this.$bored.textContent = this.bored
-        // this.$tired.textContent = this.tired
-        // this.$lonely.textContent = this.lonely
+        this.$time.textContent = this.timeLeft;
       }
 
       tick() {
@@ -107,9 +107,10 @@
 
         this.timeLeft -= 1;
         this.difficulty++;
-        this.bored = this.bored + this.difficulty + Math.floor(Math.random() * 2);
-        this.tired = this.tired + this.difficulty + Math.floor(Math.random() * 2);
-        this.lonely = this.lonely + this.difficulty + Math.floor(Math.random() * 2);
+        this.coolDownRatio += 1000;
+        this.bored = this.bored + this.difficulty;
+        this.tired = this.tired + this.difficulty;
+        this.lonely = this.lonely + this.difficulty;
         this.changeValues();
       }
 
@@ -184,28 +185,28 @@
             this.tvActive = false;
             window.setTimeout(() => {
               this.tvActive = true;
-            }, 1000);
+            }, 1000 - this.coolDownRatio);
             break;
 
           case 'goOut':
             this.goOutActive = false;
             window.setTimeout(() => {
               this.goOutActive = true;
-            }, 6000);
+            }, 6000 - this.coolDownRatio);
             break;
 
           case 'cook':
             this.cookActive = false;
             window.setTimeout(() => {
               this.cookActive = true;
-            }, 4000);
+            }, 4000 - this.coolDownRatio);
             break;
 
           case 'phone':
             this.phoneActive = false;
             window.setTimeout(() => {
               this.phoneActive = true;
-            }, 6000);
+            }, 6000 - this.coolDownRatio);
             break;
         }
       }
@@ -216,6 +217,13 @@
 
       bonusCard() {
         console.log('card!');
+      }
+
+    }
+
+    class Shop {
+      constructor(game) {
+        this.$shopButton = document.querySelector('.js-shop');
       }
 
     }

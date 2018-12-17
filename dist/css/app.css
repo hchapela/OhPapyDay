@@ -85,6 +85,13 @@ body > .container {
   padding: 15px 25px;
   color: white; }
 
+button.shop {
+  padding: 15px 30px;
+  position: absolute;
+  bottom: 200px;
+  background: white;
+  color: black; }
+
 .container .statuses {
   background: green;
   height: 20%;
