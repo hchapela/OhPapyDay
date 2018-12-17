@@ -1,8 +1,8 @@
 /* TODO
     show Bonuses icons
     Better dom manipulation
-    Pause the game while on shop
-*/ 
+    Delete clickable controls when game paused
+*/
 
 module.exports = class Shop {
     constructor(_game) {
@@ -37,15 +37,20 @@ module.exports = class Shop {
     toggleShop() {
         this.$shopButton.addEventListener('click', () => {
             if (this.isClosed) {
+                // Stop the game while on shop
+                window.clearInterval(this.game.isPlaying)
                 this.isClosed = false
                 this.$shopItems.classList.remove('shop-hidden')
             } else if (!this.isClosed) {
+                // Start the game again when leaving shop
+                this.game.isPlaying = window.setInterval(this.game.tick, 1000)
                 this.isClosed = true
                 this.$shopItems.classList.add('shop-hidden')
             }
         })
     }
 
+    // Init bonuses at 0
     initBonuses() {
         this.tvBonus = {
             score: 0,
@@ -73,15 +78,23 @@ module.exports = class Shop {
         }
     }
 
+    // Factorisation of function initItems for similar lines
+    shoppedEvent(_cost) {
+        // Close shop after buying anything
+        this.isClosed = true
+        this.$shopItems.classList.add('shop-hidden')
+        // Disable multiple buying for each item
+        this.game.score -= _cost
+        // Start the game again when leaving shop
+        this.game.isPlaying = window.setInterval(this.game.tick, 1000)
+    }
+
+    // Event on each item bought
     initItems() {
         this.$smartTv.addEventListener('click', () => {
             const cost = 5000
             if (this.game.score > cost && !this.smartTV) {
-                // Close shop after buying anything
-                this.isClosed = true
-                this.$shopItems.classList.add('shop-hidden')
-                // Disable multiple buying for each item
-                this.game.score -= cost
+                this.shoppedEvent(cost)
                 // Iterm cost and bonuses implemented
                 this.tvBonus = {
                     score: 30,
@@ -90,18 +103,12 @@ module.exports = class Shop {
                     lonely: -10
                 }
             }
-
         })
         this.$smartPhone.addEventListener('click', () => {
             const cost = 5000
             if (this.game.score > cost && !this.smartPhone) {
-                // Close shop after buying anything
-                this.isClosed = true
-                this.$shopItems.classList.add('shop-hidden')
-                // Disable multiple buying for each item
-                this.smartPhone = true
+                this.shoppedEvent(cost)
                 // Iterm cost and bonuses implemented
-                this.game.score -= cost
                 this.phoneBonus = {
                     score: 30,
                     tired: -20,
@@ -109,18 +116,12 @@ module.exports = class Shop {
                     lonely: -10
                 }
             }
-
         })
         this.$scooter.addEventListener('click', () => {
             const cost = 5000
             if (this.game.score > cost && !this.scooter) {
-                // Close shop after buying anything
-                this.isClosed = true
-                this.$shopItems.classList.add('shop-hidden')
-                // Disable multiple buying for each item
-                this.scooter = true
+                this.shoppedEvent(cost)
                 // Iterm cost and bonuses implemented
-                this.game.score -= cost
                 this.goOutBonus = {
                     score: 30,
                     tired: -20,
@@ -128,18 +129,12 @@ module.exports = class Shop {
                     lonely: -10
                 }
             }
-
         })
         this.$cooker.addEventListener('click', () => {
             const cost = 5000
             if (this.game.score > cost && !this.cooker) {
-                // Close shop after buying anything
-                this.isClosed = true
-                this.$shopItems.classList.add('shop-hidden')
-                // Disable multiple buying for each item
-                this.cooker = true
+                this.shoppedEvent(cost)
                 // Iterm cost and bonuses implemented
-                this.game.score -= cost
                 this.cookBonus = {
                     score: 30,
                     tired: -20,

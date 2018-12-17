@@ -26,7 +26,7 @@ class Game {
 
         // Get variables
         this.score = 0
-        this.timeLeft = 30
+        this.time = 0
         this.tired = 0
         this.bored = 0
         this.lonely = 0
@@ -79,14 +79,14 @@ class Game {
         this.$lonely.style.transform = `scaleX(${this.lonely / 100})`
 
         this.$score.textContent = this.score
-        this.$time.textContent = this.timeLeft
+        this.$time.textContent = this.time
     }
 
     tick() {
         // Chec if game is Loosed
         this.isLoosed()
         // One tick
-        this.timeLeft -= 1
+        this.time += 1
         this.difficulty++
         this.coolDownRatio += 1000
         this.bored = this.bored + this.difficulty
@@ -100,8 +100,7 @@ class Game {
     }
 
     isLoosed() {
-        if (this.timeLeft === 1 ||
-            this.bored + this.difficulty > 100 ||
+        if (this.bored + this.difficulty > 100 ||
             this.tired + this.difficulty > 100 ||
             this.lonely + this.difficulty > 100
         ) {

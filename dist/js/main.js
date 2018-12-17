@@ -87,7 +87,7 @@
     /* TODO
         show Bonuses icons
         Better dom manipulation
-        Pause the game while on shop
+        Delete clickable controls when game paused
     */
     module.exports = class Shop {
       constructor(_game) {
@@ -119,14 +119,19 @@
       toggleShop() {
         this.$shopButton.addEventListener('click', () => {
           if (this.isClosed) {
+            // Stop the game while on shop
+            window.clearInterval(this.game.isPlaying);
             this.isClosed = false;
             this.$shopItems.classList.remove('shop-hidden');
           } else if (!this.isClosed) {
+            // Start the game again when leaving shop
+            this.game.isPlaying = window.setInterval(this.game.tick, 1000);
             this.isClosed = true;
             this.$shopItems.classList.add('shop-hidden');
           }
         });
-      }
+      } // Init bonuses at 0
+
 
       initBonuses() {
         this.tvBonus = {
@@ -153,18 +158,26 @@
           bored: 0,
           lonely: 0
         };
-      }
+      } // Factorisation of function initItems for similar lines
+
+
+      shoppedEvent(_cost) {
+        // Close shop after buying anything
+        this.isClosed = true;
+        this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+
+        this.game.score -= _cost; // Start the game again when leaving shop
+
+        this.game.isPlaying = window.setInterval(this.game.tick, 1000);
+      } // Event on each item bought
+
 
       initItems() {
         this.$smartTv.addEventListener('click', () => {
           const cost = 5000;
 
           if (this.game.score > cost && !this.smartTV) {
-            // Close shop after buying anything
-            this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
-
-            this.game.score -= cost; // Iterm cost and bonuses implemented
+            this.shoppedEvent(cost); // Iterm cost and bonuses implemented
 
             this.tvBonus = {
               score: 30,
@@ -178,13 +191,8 @@
           const cost = 5000;
 
           if (this.game.score > cost && !this.smartPhone) {
-            // Close shop after buying anything
-            this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+            this.shoppedEvent(cost); // Iterm cost and bonuses implemented
 
-            this.smartPhone = true; // Iterm cost and bonuses implemented
-
-            this.game.score -= cost;
             this.phoneBonus = {
               score: 30,
               tired: -20,
@@ -197,13 +205,8 @@
           const cost = 5000;
 
           if (this.game.score > cost && !this.scooter) {
-            // Close shop after buying anything
-            this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+            this.shoppedEvent(cost); // Iterm cost and bonuses implemented
 
-            this.scooter = true; // Iterm cost and bonuses implemented
-
-            this.game.score -= cost;
             this.goOutBonus = {
               score: 30,
               tired: -20,
@@ -216,13 +219,8 @@
           const cost = 5000;
 
           if (this.game.score > cost && !this.cooker) {
-            // Close shop after buying anything
-            this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+            this.shoppedEvent(cost); // Iterm cost and bonuses implemented
 
-            this.cooker = true; // Iterm cost and bonuses implemented
-
-            this.game.score -= cost;
             this.cookBonus = {
               score: 30,
               tired: -20,
@@ -296,7 +294,7 @@
     /* TODO
         show Bonuses icons
         Better dom manipulation
-        Pause the game while on shop
+        Delete clickable controls when game paused
     */
     module.exports = class Shop {
       constructor(_game) {
@@ -328,14 +326,19 @@
       toggleShop() {
         this.$shopButton.addEventListener('click', () => {
           if (this.isClosed) {
+            // Stop the game while on shop
+            window.clearInterval(this.game.isPlaying);
             this.isClosed = false;
             this.$shopItems.classList.remove('shop-hidden');
           } else if (!this.isClosed) {
+            // Start the game again when leaving shop
+            this.game.isPlaying = window.setInterval(this.game.tick, 1000);
             this.isClosed = true;
             this.$shopItems.classList.add('shop-hidden');
           }
         });
-      }
+      } // Init bonuses at 0
+
 
       initBonuses() {
         this.tvBonus = {
@@ -362,18 +365,26 @@
           bored: 0,
           lonely: 0
         };
-      }
+      } // Factorisation of function initItems for similar lines
+
+
+      shoppedEvent(_cost) {
+        // Close shop after buying anything
+        this.isClosed = true;
+        this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+
+        this.game.score -= _cost; // Start the game again when leaving shop
+
+        this.game.isPlaying = window.setInterval(this.game.tick, 1000);
+      } // Event on each item bought
+
 
       initItems() {
         this.$smartTv.addEventListener('click', () => {
           const cost = 5000;
 
           if (this.game.score > cost && !this.smartTV) {
-            // Close shop after buying anything
-            this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
-
-            this.game.score -= cost; // Iterm cost and bonuses implemented
+            this.shoppedEvent(cost); // Iterm cost and bonuses implemented
 
             this.tvBonus = {
               score: 30,
@@ -387,13 +398,8 @@
           const cost = 5000;
 
           if (this.game.score > cost && !this.smartPhone) {
-            // Close shop after buying anything
-            this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+            this.shoppedEvent(cost); // Iterm cost and bonuses implemented
 
-            this.smartPhone = true; // Iterm cost and bonuses implemented
-
-            this.game.score -= cost;
             this.phoneBonus = {
               score: 30,
               tired: -20,
@@ -406,13 +412,8 @@
           const cost = 5000;
 
           if (this.game.score > cost && !this.scooter) {
-            // Close shop after buying anything
-            this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+            this.shoppedEvent(cost); // Iterm cost and bonuses implemented
 
-            this.scooter = true; // Iterm cost and bonuses implemented
-
-            this.game.score -= cost;
             this.goOutBonus = {
               score: 30,
               tired: -20,
@@ -425,13 +426,8 @@
           const cost = 5000;
 
           if (this.game.score > cost && !this.cooker) {
-            // Close shop after buying anything
-            this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
+            this.shoppedEvent(cost); // Iterm cost and bonuses implemented
 
-            this.cooker = true; // Iterm cost and bonuses implemented
-
-            this.game.score -= cost;
             this.cookBonus = {
               score: 30,
               tired: -20,
@@ -472,7 +468,7 @@
         this.$phone = this.$controls.querySelector('.js-phone'); // Get variables
 
         this.score = 0;
-        this.timeLeft = 30;
+        this.time = 0;
         this.tired = 0;
         this.bored = 0;
         this.lonely = 0;
@@ -523,14 +519,14 @@
         this.$bored.style.transform = `scaleX(${this.bored / 100})`;
         this.$lonely.style.transform = `scaleX(${this.lonely / 100})`;
         this.$score.textContent = this.score;
-        this.$time.textContent = this.timeLeft;
+        this.$time.textContent = this.time;
       }
 
       tick() {
         // Chec if game is Loosed
         this.isLoosed(); // One tick
 
-        this.timeLeft -= 1;
+        this.time += 1;
         this.difficulty++;
         this.coolDownRatio += 1000;
         this.bored = this.bored + this.difficulty;
@@ -543,7 +539,7 @@
       }
 
       isLoosed() {
-        if (this.timeLeft === 1 || this.bored + this.difficulty > 100 || this.tired + this.difficulty > 100 || this.lonely + this.difficulty > 100) {
+        if (this.bored + this.difficulty > 100 || this.tired + this.difficulty > 100 || this.lonely + this.difficulty > 100) {
           window.clearInterval(this.isPlaying);
           console.log('This is the end');
         }
