@@ -168,3 +168,6 @@ button.shop {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
+
+.shop-hidden {
+  opacity: 0; }

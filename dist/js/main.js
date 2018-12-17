@@ -27,6 +27,252 @@
   return s;
 })({
   1: [function (require, module, exports) {
+    module.exports = class Card {
+      constructor(game) {
+        this.initScope();
+        this.initCards();
+      }
+
+      initScope() {// this.newCard = this.newCard.bind(this)
+      }
+
+      newCard() {
+        this.newCard = document.createElement(div);
+      }
+
+      initCards() {
+        window.setInterval(this.newCard, 10000);
+      }
+
+    };
+  }, {}]
+}, {}, [1]);
+(function e(t, n, r) {
+  function s(o, u) {
+    if (!n[o]) {
+      if (!t[o]) {
+        var a = typeof require == "function" && require;
+        if (!u && a) return a(o, !0);
+        if (i) return i(o, !0);
+        throw new Error("Cannot find module '" + o + "'");
+      }
+
+      var f = n[o] = {
+        exports: {}
+      };
+      t[o][0].call(f.exports, function (e) {
+        var n = t[o][1][e];
+        return s(n ? n : e);
+      }, f, f.exports, e, t, n, r);
+    }
+
+    return n[o].exports;
+  }
+
+  var i = typeof require == "function" && require;
+
+  for (var o = 0; o < r.length; o++) s(r[o]);
+
+  return s;
+})({
+  1: [function (require, module, exports) {
+    module.exports = class Shop {
+      constructor(game) {
+        this.$shop = document.querySelector('.js-shop');
+        this.$shopButton = this.$shop.querySelector('.js-open-shop');
+        this.$shopItems = this.$shop.querySelector('.js-shop-items');
+        this.$item1 = this.$shop.querySelector('.js-item-1');
+        this.isClosed = true;
+        this.initScope();
+        this.initShop();
+        this.initBonuses();
+        this.initItems();
+      }
+
+      initScope() {
+        this.smartTv = this.smartTv.bind(this);
+      }
+
+      initShop() {
+        this.$shopButton.addEventListener('click', () => {
+          if (this.isClosed) {
+            this.isClosed = false;
+            this.$shopItems.classList.remove('shop-hidden');
+          } else if (!this.isClosed) {
+            this.isClosed = true;
+            this.$shopItems.classList.add('shop-hidden');
+          }
+        });
+      }
+
+      initBonuses() {
+        this.tvBonus = {
+          score: 0,
+          tired: 0,
+          bored: 0,
+          lonely: 0
+        };
+        this.goOutBonus = {
+          score: 0,
+          tired: 0,
+          bored: 0,
+          lonely: 0
+        };
+        this.cookBonus = {
+          score: 0,
+          tired: 0,
+          bored: 0,
+          lonely: 0
+        };
+        this.phoneBonus = {
+          score: 0,
+          tired: 0,
+          bored: 0,
+          lonely: 0
+        };
+      }
+
+      smartTv() {
+        this.tvBonus = {
+          score: 30,
+          tired: -20,
+          bored: -10,
+          lonely: -10
+        };
+      }
+
+      initItems() {
+        this.$item1.addEventListener('click', this.smartTv);
+      }
+
+    };
+  }, {}]
+}, {}, [1]);
+(function e(t, n, r) {
+  function s(o, u) {
+    if (!n[o]) {
+      if (!t[o]) {
+        var a = typeof require == "function" && require;
+        if (!u && a) return a(o, !0);
+        if (i) return i(o, !0);
+        throw new Error("Cannot find module '" + o + "'");
+      }
+
+      var f = n[o] = {
+        exports: {}
+      };
+      t[o][0].call(f.exports, function (e) {
+        var n = t[o][1][e];
+        return s(n ? n : e);
+      }, f, f.exports, e, t, n, r);
+    }
+
+    return n[o].exports;
+  }
+
+  var i = typeof require == "function" && require;
+
+  for (var o = 0; o < r.length; o++) s(r[o]);
+
+  return s;
+})({
+  1: [function (require, module, exports) {
+    module.exports = class Card {
+      constructor(game) {
+        this.initScope();
+        this.initCards();
+      }
+
+      initScope() {// this.newCard = this.newCard.bind(this)
+      }
+
+      newCard() {
+        this.newCard = document.createElement(div);
+      }
+
+      initCards() {
+        window.setInterval(this.newCard, 10000);
+      }
+
+    };
+  }, {}],
+  2: [function (require, module, exports) {
+    module.exports = class Shop {
+      constructor(game) {
+        this.$shop = document.querySelector('.js-shop');
+        this.$shopButton = this.$shop.querySelector('.js-open-shop');
+        this.$shopItems = this.$shop.querySelector('.js-shop-items');
+        this.$item1 = this.$shop.querySelector('.js-item-1');
+        this.isClosed = true;
+        this.initScope();
+        this.initShop();
+        this.initBonuses();
+        this.initItems();
+      }
+
+      initScope() {
+        this.smartTv = this.smartTv.bind(this);
+      }
+
+      initShop() {
+        this.$shopButton.addEventListener('click', () => {
+          if (this.isClosed) {
+            this.isClosed = false;
+            this.$shopItems.classList.remove('shop-hidden');
+          } else if (!this.isClosed) {
+            this.isClosed = true;
+            this.$shopItems.classList.add('shop-hidden');
+          }
+        });
+      }
+
+      initBonuses() {
+        this.tvBonus = {
+          score: 0,
+          tired: 0,
+          bored: 0,
+          lonely: 0
+        };
+        this.goOutBonus = {
+          score: 0,
+          tired: 0,
+          bored: 0,
+          lonely: 0
+        };
+        this.cookBonus = {
+          score: 0,
+          tired: 0,
+          bored: 0,
+          lonely: 0
+        };
+        this.phoneBonus = {
+          score: 0,
+          tired: 0,
+          bored: 0,
+          lonely: 0
+        };
+      }
+
+      smartTv() {
+        this.tvBonus = {
+          score: 30,
+          tired: -20,
+          bored: -10,
+          lonely: -10
+        };
+      }
+
+      initItems() {
+        this.$item1.addEventListener('click', this.smartTv);
+      }
+
+    };
+  }, {}],
+  3: [function (require, module, exports) {
+    const Shop = require('./Shop');
+
+    const Card = require('./Card');
+
     class Game {
       constructor() {
         console.log('New Game'); // Get HTML Elements
@@ -58,8 +304,8 @@
         this.initGame();
         this.initButtons();
         this.initTick();
-        this.initBonus();
-        const shop = new Shop(this);
+        this.shop = new Shop(this);
+        this.card = new Card(this);
       }
 
       initScope() {
@@ -69,7 +315,6 @@
         this.goOutAction = this.goOutAction.bind(this);
         this.cookAction = this.cookAction.bind(this);
         this.phoneAction = this.phoneAction.bind(this);
-        this.bonusCard = this.bonusCard.bind(this);
         this.initTick = this.initTick.bind(this);
       }
 
@@ -137,10 +382,10 @@
 
       tvAction() {
         if (this.tvActive) {
-          this.score += 100;
-          this.tired -= 30;
-          this.bored += 20;
-          this.lonely += 20;
+          this.score += 100 + this.shop.tvBonus.score;
+          this.tired -= 30 + this.shop.tvBonus.tired;
+          this.bored += 20 + this.shop.tvBonus.bored;
+          this.lonely += 20 + this.shop.tvBonus.lonely;
           this.changeValues();
           this.setCoolDown('tv');
         }
@@ -211,24 +456,12 @@
         }
       }
 
-      initBonus() {
-        const intervalCards = window.setInterval(this.bonusCard, 5000);
-      }
-
-      bonusCard() {
-        console.log('card!');
-      }
-
-    }
-
-    class Shop {
-      constructor(game) {
-        this.$shopButton = document.querySelector('.js-shop');
-      }
-
     }
 
     const game = new Game();
     console.log(game);
-  }, {}]
-}, {}, [1]);
+  }, {
+    "./Card": 1,
+    "./Shop": 2
+  }]
+}, {}, [3]);

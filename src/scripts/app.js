@@ -1,3 +1,6 @@
+const Shop = require('./Shop')
+const Card = require('./Card')
+
 class Game {
     constructor() {
         console.log('New Game');
@@ -31,8 +34,8 @@ class Game {
         this.initGame()
         this.initButtons()
         this.initTick()
-        this.initBonus()
-        const shop = new Shop(this)
+        this.shop = new Shop(this)
+        this.card = new Card(this)
     }
 
     initScope() {
@@ -42,7 +45,6 @@ class Game {
         this.goOutAction = this.goOutAction.bind(this)
         this.cookAction = this.cookAction.bind(this)
         this.phoneAction = this.phoneAction.bind(this)
-        this.bonusCard = this.bonusCard.bind(this)
         this.initTick = this.initTick.bind(this)
     }
 
@@ -56,10 +58,8 @@ class Game {
 
     normalizeValue(value) {
         if (value > 100) {
-
             return 100
-        }
-        else if (value < 0) {
+        } else if (value < 0) {
             return 0
         }
         return value
@@ -119,10 +119,10 @@ class Game {
 
     tvAction() {
         if (this.tvActive) {
-            this.score += 100
-            this.tired -= 30
-            this.bored += 20
-            this.lonely += 20
+            this.score += 100 + this.shop.tvBonus.score
+            this.tired -= 30 + this.shop.tvBonus.tired
+            this.bored += 20 + this.shop.tvBonus.bored
+            this.lonely += 20 + this.shop.tvBonus.lonely
             this.changeValues()
             this.setCoolDown('tv')
         }
@@ -189,21 +189,8 @@ class Game {
                 break
         }
     }
-
-    initBonus() {
-        const intervalCards = window.setInterval(this.bonusCard, 5000)
-    }
-
-    bonusCard() {
-        console.log('card!');
-    }
 }
 
-class Shop {
-    constructor(game) {
-        this.$shopButton = document.querySelector('.js-shop')
-    }
-}
 
 const game = new Game()
 console.log(game);
