@@ -49,6 +49,7 @@ html {
   font-family: "Montserrat"; }
 
 body {
+  overflow: hidden;
   background: black;
   width: 100vw;
   height: 100vh;
@@ -204,6 +205,13 @@ button.shop {
     width: 0%; }
   100% {
     width: 100%; } }
+
+.shop-container {
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background: #7D48FF;
+  position: absolute; }
 
 .shop-hidden {
   opacity: 0; }

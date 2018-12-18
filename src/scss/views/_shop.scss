@@ -1,3 +1,11 @@
+.shop-container {
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background: $lightPurple;
+    position: absolute;
+}
+
 .shop-hidden {
     opacity: 0;
 }
