@@ -83,7 +83,8 @@ body > .container {
 .controls button.activity {
   background: black;
   padding: 15px 25px;
-  color: white; }
+  color: white;
+  margin: 30px; }
 
 button.shop {
   padding: 15px 30px;
@@ -179,13 +180,18 @@ button.shop {
     -webkit-box-shadow: 0 9px #dcaa32;
             box-shadow: 0 9px #dcaa32; }
     .container .controls button.activity .icon {
+      -webkit-transform: scale(1.4);
+              transform: scale(1.4);
       fill: #dcaa32; }
     .container .controls button.activity:active {
-      background-color: #f3d15f;
-      -webkit-box-shadow: 0 3px #dcaa32;
-              box-shadow: 0 3px #dcaa32;
       -webkit-transform: translateY(5px);
               transform: translateY(5px); }
+  .container .controls button.activity.disabled {
+    background-color: #F9F4EA;
+    -webkit-box-shadow: 0 9px #E1D6C2;
+            box-shadow: 0 9px #E1D6C2; }
+    .container .controls button.activity.disabled .icon {
+      fill: #E1D6C2; }
 
 button.cooldown {
   background: #336699;

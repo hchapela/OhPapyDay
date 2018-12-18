@@ -84,6 +84,43 @@
   return s;
 })({
   1: [function (require, module, exports) {
+    module.exports = class Controls {
+      constructor(_game) {
+        this.game = _game;
+      }
+
+    };
+  }, {}]
+}, {}, [1]);
+(function e(t, n, r) {
+  function s(o, u) {
+    if (!n[o]) {
+      if (!t[o]) {
+        var a = typeof require == "function" && require;
+        if (!u && a) return a(o, !0);
+        if (i) return i(o, !0);
+        throw new Error("Cannot find module '" + o + "'");
+      }
+
+      var f = n[o] = {
+        exports: {}
+      };
+      t[o][0].call(f.exports, function (e) {
+        var n = t[o][1][e];
+        return s(n ? n : e);
+      }, f, f.exports, e, t, n, r);
+    }
+
+    return n[o].exports;
+  }
+
+  var i = typeof require == "function" && require;
+
+  for (var o = 0; o < r.length; o++) s(r[o]);
+
+  return s;
+})({
+  1: [function (require, module, exports) {
     /* TODO
         Better dom manipulation
     */
@@ -310,6 +347,14 @@
     };
   }, {}],
   2: [function (require, module, exports) {
+    module.exports = class Controls {
+      constructor(_game) {
+        this.game = _game;
+      }
+
+    };
+  }, {}],
+  3: [function (require, module, exports) {
     /* TODO
         Better dom manipulation
     */
@@ -478,17 +523,22 @@
 
     };
   }, {}],
-  3: [function (require, module, exports) {
+  4: [function (require, module, exports) {
     /* TODO
         Show cooldowns on buttons
+        Events
         Hamburger Menu
         Starting cinematics
         Sounds
         Webview
+        Calibrer
+        End of the game screen score recap
     */
     const Shop = require('./Shop');
 
     const Card = require('./Card');
+
+    const Controls = require('./Controls');
 
     class Game {
       constructor() {
@@ -503,10 +553,10 @@
         this.$picture = this.$main.querySelector('.js-picture');
         this.$time = this.$main.querySelector('.js-time span');
         this.$controls = document.querySelector('.controls');
-        this.$tv = this.$controls.querySelector('.js-tv');
-        this.$cook = this.$controls.querySelector('.js-cook');
-        this.$goOut = this.$controls.querySelector('.js-go-out');
-        this.$phone = this.$controls.querySelector('.js-phone'); // Get variables
+        this.$tv = this.$controls.querySelector('.js-tv .activity');
+        this.$cook = this.$controls.querySelector('.js-cook .activity');
+        this.$goOut = this.$controls.querySelector('.js-go-out .activity');
+        this.$phone = this.$controls.querySelector('.js-phone .activity'); // Get variables
 
         this.score = 0;
         this.time = 0;
@@ -522,6 +572,7 @@
         this.initTick();
         this.shop = new Shop(this);
         this.card = new Card(this);
+        this.controls = new Controls(this);
       }
 
       initScope() {
@@ -569,11 +620,24 @@
         this.$time.textContent = this.time;
       }
 
+      decrement(_value) {
+        if (_value > 1) {
+          return _value - 1;
+        }
+
+        return _value;
+      }
+
       tick() {
         // Chec if game is Loosed
-        this.isLost(); // One tick
+        this.isLost(); // One tick on time and cooldowns
 
-        this.time += 1; // Difficulty raise every 10s
+        this.time += 1;
+        this.tvActive = this.decrement(this.tvActive);
+        this.cookActive = this.decrement(this.cookActive);
+        this.phoneActive = this.decrement(this.phoneActive);
+        this.goOutActive = this.decrement(this.goOutActive);
+        console.log(this.cookActive); // Difficulty raise every 10s
 
         this.difficulty += this.time % 10 === 0 ? 1 : 0;
         this.bored = this.bored + this.difficulty;
@@ -598,11 +662,11 @@
         this.$cook.addEventListener('click', this.cookAction);
         this.$phone.addEventListener('click', this.phoneAction); // Enable controls
 
-        this.tvActive = this.goOutActive = this.cookActive = this.phoneActive = true;
+        this.tvActive = this.goOutActive = this.cookActive = this.phoneActive = 0;
       }
 
       tvAction() {
-        if (this.tvActive) {
+        if (this.tvActive === 0) {
           this.score += 100 + this.shop.tvBonus.score;
           this.tired -= 30 + this.shop.tvBonus.tired;
           this.bored += 20 + this.shop.tvBonus.bored;
@@ -613,7 +677,7 @@
       }
 
       goOutAction() {
-        if (this.goOutActive) {
+        if (this.goOutActive === 0) {
           this.score += 800 + this.shop.goOutBonus.score;
           this.tired += 30 + this.shop.goOutBonus.tired;
           this.bored -= 20 + this.shop.goOutBonus.bored;
@@ -624,7 +688,7 @@
       }
 
       cookAction() {
-        if (this.cookActive) {
+        if (this.cookActive === 0) {
           this.score += 250 + this.shop.cookBonus.score;
           this.tired += 20 + this.shop.cookBonus.tired;
           this.bored -= 10 + this.shop.cookBonus.bored;
@@ -635,7 +699,7 @@
       }
 
       phoneAction() {
-        if (this.phoneActive) {
+        if (this.phoneActive === 0) {
           this.score += 400 + this.shop.phoneBonus.score;
           this.tired -= 20 + this.shop.phoneBonus.tired;
           this.bored -= 10 + this.shop.phoneBonus.bored;
@@ -648,30 +712,38 @@
       setCoolDown(action) {
         switch (action) {
           case 'tv':
-            this.tvActive = false;
+            this.tvActive = 1;
+            this.$tv.classList.add('disabled');
             window.setTimeout(() => {
               this.tvActive = true;
+              this.$tv.classList.remove('disabled');
             }, 1000);
             break;
 
           case 'goOut':
-            this.goOutActive = false;
+            this.goOutActive = 6;
+            this.$goOut.classList.add('disabled');
             window.setTimeout(() => {
               this.goOutActive = true;
+              this.$goOut.classList.remove('disabled');
             }, 6000);
             break;
 
           case 'cook':
-            this.cookActive = false;
+            this.cookActive = 4;
+            this.$cook.classList.add('disabled');
             window.setTimeout(() => {
               this.cookActive = true;
+              this.$cook.classList.remove('disabled');
             }, 4000);
             break;
 
           case 'phone':
-            this.phoneActive = false;
+            this.phoneActive = 6;
+            this.$phone.classList.add('disabled');
             window.setTimeout(() => {
               this.phoneActive = true;
+              this.$phone.classList.remove('disabled');
             }, 6000);
             break;
         }
@@ -683,6 +755,7 @@
     console.log(game);
   }, {
     "./Card": 1,
-    "./Shop": 2
+    "./Controls": 2,
+    "./Shop": 3
   }]
-}, {}, [3]);
+}, {}, [4]);

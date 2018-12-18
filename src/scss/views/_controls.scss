@@ -12,18 +12,25 @@
         border: none;
         border-radius: 5px;
         box-shadow: 0 9px $yellowSecondary;
+
         .icon {
-            fill: #dcaa32;
+            transform: scale(1.4);
+            fill: $yellowSecondary;
         }
-        
 
         &:active {
-            background-color: #f3d15f;
-            box-shadow: 0 3px #dcaa32;
             transform: translateY(5px);
         }
     }
 
+    button.activity.disabled {
+        background-color: $lightGrey;
+        box-shadow: 0 9px $darkGrey;
+
+        .icon {
+            fill: $darkGrey;
+        }
+    }
 }
 
 $buttonBaseColor: #336699;
