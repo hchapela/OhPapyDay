@@ -1,5 +1,9 @@
 /* TODO
     Show cooldowns on buttons
+    Hamburger Menu
+    Starting cinematics
+    Sounds
+    Webview
 */ 
 
 const Shop = require('./Shop')

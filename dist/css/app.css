@@ -171,6 +171,73 @@ button.shop {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
+  .container .controls button.activity {
+    outline: none;
+    background-color: #f3d15f;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 9px #dcaa32;
+            box-shadow: 0 9px #dcaa32; }
+    .container .controls button.activity .icon {
+      fill: #dcaa32; }
+    .container .controls button.activity:active {
+      background-color: #f3d15f;
+      -webkit-box-shadow: 0 3px #dcaa32;
+              box-shadow: 0 3px #dcaa32;
+      -webkit-transform: translateY(5px);
+              transform: translateY(5px); }
+
+button.cooldown {
+  background: #336699;
+  min-height: 48px;
+  min-width: 144px;
+  position: relative;
+  margin: 5px;
+  border-radius: 5px;
+  border: 0;
+  color: #fff;
+  padding: 0 15px;
+  font-size: 16px;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer; }
+  button.cooldown:disabled {
+    background: #264d73;
+    color: #d9d9d9;
+    cursor: default;
+    -webkit-box-shadow: inset 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 3px 3px 10px 0px rgba(0, 0, 0, 0.2); }
+    button.cooldown:disabled:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      height: 5px;
+      background: #1a334d;
+      -webkit-animation: cooldown 15s linear;
+              animation: cooldown 15s linear; }
+
+@-webkit-keyframes cooldown {
+  0% {
+    width: 0%; }
+  100% {
+    width: 100%; } }
+
+@keyframes cooldown {
+  0% {
+    width: 0%; }
+  100% {
+    width: 100%; } }
+
+/* layout stuff */
+section {
+  text-align: center;
+  margin-top: 100px;
+  color: #333; }
+
+p {
+  font-size: 12px; }
 
 .shop-hidden {
   opacity: 0; }
