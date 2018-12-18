@@ -7,6 +7,7 @@
     Webview
     Calibrer
     End of the game screen score recap
+    favicon
 */
 
 const Shop = require('./Shop')

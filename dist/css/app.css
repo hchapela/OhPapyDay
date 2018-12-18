@@ -277,10 +277,9 @@ button.shop {
   height: 100vh;
   background: #7D48FF;
   position: absolute;
-  -webkit-transition-duration: 2s;
-          transition-duration: 2s;
-  -webkit-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out; }
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
 
 .hamburger-deploy {
   -webkit-transform: translateX(-100%);
@@ -290,5 +289,10 @@ button.shop {
   -webkit-transition-timing-function: ease-in-out;
           transition-timing-function: ease-in-out; }
 
-.menu-hidden {
-  opacity: 0; }
+.menu-links {
+  margin: auto; }
+  .menu-links .menu-link {
+    margin: 40px;
+    color: #FFF;
+    font-weight: 600;
+    font-size: 2.4rem; }

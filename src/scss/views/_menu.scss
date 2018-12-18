@@ -4,8 +4,7 @@
     height: 100vh;
     background: $lightPurple;
     position: absolute;
-    transition-duration: 2s;
-    transition-timing-function: ease-in-out;
+    display: flex;
 }
 
 .hamburger-deploy {
@@ -14,6 +13,12 @@
     transition-timing-function: ease-in-out;
 }
 
-.menu-hidden {
-    opacity: 0;
+.menu-links {
+    margin: auto;
+    .menu-link {
+        margin: 40px;
+        color: $white;
+        font-weight: 600;
+        font-size: 2.4rem;
+    }
 }
