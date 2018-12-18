@@ -98,7 +98,7 @@ class Game {
     }
 
     decrement(_value) {
-        if(_value > 1) {
+        if(_value > 0) {
             return _value - 1
         }
         return _value
@@ -114,7 +114,8 @@ class Game {
         this.phoneActive = this.decrement(this.phoneActive)
         this.goOutActive = this.decrement(this.goOutActive)
         
-        console.log(this.cookActive);
+        // Check if cooldowns need controls update
+        this.checkCoolDown()
         
         // Difficulty raise every 10s
         this.difficulty += (this.time % 10 === 0 ? 1 : 0)
@@ -143,7 +144,7 @@ class Game {
         this.$goOut.addEventListener('click', this.goOutAction)
         this.$cook.addEventListener('click', this.cookAction)
         this.$phone.addEventListener('click', this.phoneAction)
-
+        
         // Enable controls
         this.tvActive = this.goOutActive = this.cookActive = this.phoneActive = 0
     }
@@ -192,39 +193,38 @@ class Game {
         }
     }
 
+    checkCoolDown() {
+        if(this.tvActive === 0) {
+            this.$tv.classList.remove('disabled')
+        }
+        if(this.cookActive === 0) {
+            this.$cook.classList.remove('disabled')
+        }
+        if(this.phoneActive === 0) {
+            this.$phone.classList.remove('disabled')
+        }
+        if(this.goOutActive === 0) {
+            this.$goOut.classList.remove('disabled')
+        }
+    }
+
     setCoolDown(action) {
         switch (action) {
             case 'tv':
                 this.tvActive = 1
                 this.$tv.classList.add('disabled')
-                window.setTimeout(() => {
-                    this.tvActive = true
-                    this.$tv.classList.remove('disabled')
-                }, 1000)
                 break
             case 'goOut':
                 this.goOutActive = 6
                 this.$goOut.classList.add('disabled')
-                window.setTimeout(() => {
-                    this.goOutActive = true
-                    this.$goOut.classList.remove('disabled')
-                }, 6000)
                 break
             case 'cook':
                 this.cookActive = 4
                 this.$cook.classList.add('disabled')
-                window.setTimeout(() => {
-                    this.cookActive = true
-                    this.$cook.classList.remove('disabled')
-                }, 4000)
                 break
             case 'phone':
                 this.phoneActive = 6
                 this.$phone.classList.add('disabled')
-                window.setTimeout(() => {
-                    this.phoneActive = true
-                    this.$phone.classList.remove('disabled')
-                }, 6000)
                 break
         }
     }

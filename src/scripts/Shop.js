@@ -37,18 +37,14 @@ module.exports = class Shop {
         this.$shopButton.addEventListener('click', () => {
             if (this.isClosed) {
                 // Stop the game while on shop
-                window.clearInterval(this.game.isPlaying)
+                this.game.pause()
                 this.isClosed = false
                 this.$shopItems.classList.remove('shop-hidden')
-                // Enable controls
-                this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = false
             } else if (!this.isClosed) {
                 // Start the game again when leaving shop
-                this.game.isPlaying = window.setInterval(this.game.tick, 1000)
+                this.game.play()
                 this.isClosed = true
                 this.$shopItems.classList.add('shop-hidden')
-                // Disable controls
-                this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = true
             }
         })
     }

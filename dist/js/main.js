@@ -156,18 +156,14 @@
         this.$shopButton.addEventListener('click', () => {
           if (this.isClosed) {
             // Stop the game while on shop
-            window.clearInterval(this.game.isPlaying);
+            this.game.pause();
             this.isClosed = false;
-            this.$shopItems.classList.remove('shop-hidden'); // Enable controls
-
-            this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = false;
+            this.$shopItems.classList.remove('shop-hidden');
           } else if (!this.isClosed) {
             // Start the game again when leaving shop
-            this.game.isPlaying = window.setInterval(this.game.tick, 1000);
+            this.game.play();
             this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden'); // Disable controls
-
-            this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = true;
+            this.$shopItems.classList.add('shop-hidden');
           }
         });
       } // Init bonuses at 0
@@ -390,18 +386,14 @@
         this.$shopButton.addEventListener('click', () => {
           if (this.isClosed) {
             // Stop the game while on shop
-            window.clearInterval(this.game.isPlaying);
+            this.game.pause();
             this.isClosed = false;
-            this.$shopItems.classList.remove('shop-hidden'); // Enable controls
-
-            this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = false;
+            this.$shopItems.classList.remove('shop-hidden');
           } else if (!this.isClosed) {
             // Start the game again when leaving shop
-            this.game.isPlaying = window.setInterval(this.game.tick, 1000);
+            this.game.play();
             this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden'); // Disable controls
-
-            this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = true;
+            this.$shopItems.classList.add('shop-hidden');
           }
         });
       } // Init bonuses at 0
@@ -621,7 +613,7 @@
       }
 
       decrement(_value) {
-        if (_value > 1) {
+        if (_value > 0) {
           return _value - 1;
         }
 
@@ -636,8 +628,9 @@
         this.tvActive = this.decrement(this.tvActive);
         this.cookActive = this.decrement(this.cookActive);
         this.phoneActive = this.decrement(this.phoneActive);
-        this.goOutActive = this.decrement(this.goOutActive);
-        console.log(this.cookActive); // Difficulty raise every 10s
+        this.goOutActive = this.decrement(this.goOutActive); // Check if cooldowns need controls update
+
+        this.checkCoolDown(); // Difficulty raise every 10s
 
         this.difficulty += this.time % 10 === 0 ? 1 : 0;
         this.bored = this.bored + this.difficulty;
@@ -709,42 +702,44 @@
         }
       }
 
+      checkCoolDown() {
+        if (this.tvActive === 0) {
+          this.$tv.classList.remove('disabled');
+        }
+
+        if (this.cookActive === 0) {
+          this.$cook.classList.remove('disabled');
+        }
+
+        if (this.phoneActive === 0) {
+          this.$phone.classList.remove('disabled');
+        }
+
+        if (this.goOutActive === 0) {
+          this.$goOut.classList.remove('disabled');
+        }
+      }
+
       setCoolDown(action) {
         switch (action) {
           case 'tv':
             this.tvActive = 1;
             this.$tv.classList.add('disabled');
-            window.setTimeout(() => {
-              this.tvActive = true;
-              this.$tv.classList.remove('disabled');
-            }, 1000);
             break;
 
           case 'goOut':
             this.goOutActive = 6;
             this.$goOut.classList.add('disabled');
-            window.setTimeout(() => {
-              this.goOutActive = true;
-              this.$goOut.classList.remove('disabled');
-            }, 6000);
             break;
 
           case 'cook':
             this.cookActive = 4;
             this.$cook.classList.add('disabled');
-            window.setTimeout(() => {
-              this.cookActive = true;
-              this.$cook.classList.remove('disabled');
-            }, 4000);
             break;
 
           case 'phone':
             this.phoneActive = 6;
             this.$phone.classList.add('disabled');
-            window.setTimeout(() => {
-              this.phoneActive = true;
-              this.$phone.classList.remove('disabled');
-            }, 6000);
             break;
         }
       }

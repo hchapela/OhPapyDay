@@ -193,37 +193,6 @@ button.shop {
     .container .controls button.activity.disabled .icon {
       fill: #E1D6C2; }
 
-button.cooldown {
-  background: #336699;
-  min-height: 48px;
-  min-width: 144px;
-  position: relative;
-  margin: 5px;
-  border-radius: 5px;
-  border: 0;
-  color: #fff;
-  padding: 0 15px;
-  font-size: 16px;
-  outline: none;
-  overflow: hidden;
-  cursor: pointer; }
-  button.cooldown:disabled {
-    background: #264d73;
-    color: #d9d9d9;
-    cursor: default;
-    -webkit-box-shadow: inset 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
-            box-shadow: inset 3px 3px 10px 0px rgba(0, 0, 0, 0.2); }
-    button.cooldown:disabled:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      left: 0;
-      height: 5px;
-      background: #1a334d;
-      -webkit-animation: cooldown 15s linear;
-              animation: cooldown 15s linear; }
-
 @-webkit-keyframes cooldown {
   0% {
     width: 0%; }
@@ -235,15 +204,6 @@ button.cooldown {
     width: 0%; }
   100% {
     width: 100%; } }
-
-/* layout stuff */
-section {
-  text-align: center;
-  margin-top: 100px;
-  color: #333; }
-
-p {
-  font-size: 12px; }
 
 .shop-hidden {
   opacity: 0; }
