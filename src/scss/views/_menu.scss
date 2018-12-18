@@ -1,0 +1,19 @@
+.menu-container {
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background: $lightPurple;
+    position: absolute;
+    transition-duration: 2s;
+    transition-timing-function: ease-in-out;
+}
+
+.hamburger-deploy {
+    transform: translateX(-100%);
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.menu-hidden {
+    opacity: 0;
+}
