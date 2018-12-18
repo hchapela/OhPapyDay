@@ -16,13 +16,20 @@
     </div>
     <div class="menu-container js-menu-container hamburger-deploy">
         <div class="menu-links">
-            <a href="#"><p class="menu-link js-replay">Rejouer</p></a>
-            <a href="#"><p class="menu-link">À propos de nous</p></a>
-            <a href="https://github.com/hchapela/OhPapyDay"><p class="menu-link">Github</p></a>
+            <a href="#">
+                <p class="menu-link js-replay">Rejouer</p>
+            </a>
+            <a href="#">
+                <p class="menu-link">À propos de nous</p>
+            </a>
+            <a href="https://github.com/hchapela/OhPapyDay">
+                <p class="menu-link">Github</p>
+            </a>
         </div>
     </div>
     <!-- Game -->
     <div class="container">
+        <!-- Statuses -->
         <div class="statuses js-statuses">
             <div class="level js-level">
                 <p>Fatigue</p>
@@ -37,11 +44,30 @@
                 <div class="fill lonely js-lonely"></div>
             </div>
         </div>
+        <!-- Character -->
         <div class="main js-main">
             <div class="score js-score">Score <span>0</span></div>
             <div class="picture js-picture"></div>
             <div class="time js-time">Time <span>0</span></div>
         </div>
+
+        <!-- Shop -->
+        <div class="shop js-shop">
+            <button class="open-shop js-open-shop">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm9.804-16.5l-3.431 12h-2.102l2.542-9h-5.993c.113.482.18.983.18 1.5 0 3.59-2.91 6.5-6.5 6.5-.407 0-.805-.042-1.191-.114l1.306 3.114h13.239l3.474-12h1.929l.743-2h-4.196zm-6.304 15c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm-4.5-10.5c0 2.485-2.018 4.5-4.5 4.5-2.484 0-4.5-2.015-4.5-4.5s2.016-4.5 4.5-4.5c2.482 0 4.5 2.015 4.5 4.5zm-2-.5h-2v-2h-1v2h-2v1h2v2h1v-2h2v-1z" /></svg>
+            </button>
+            <div class="shop-items js-shop-items shop-hidden">
+                <button class="item js-item js-smart-tv">Smart TV</button>
+                <button class="item js-item js-cooker">CuisineCooker3000</button>
+                <button class="item js-item js-smartphone">Smartphone</button>
+                <button class="item js-item js-scooter">trottinette 2000</button>
+            </div>
+            <div class="bonuses js-bonuses">
+            </div>
+        </div>
+
+        <!-- Controls -->
         <div class="controls">
             <div class="controls-row">
                 <div class="control js-control tv js-tv">
@@ -85,17 +111,7 @@
                 </div>
             </div>
         </div>
-        <div class="shop js-shop">
-            <button class="open-shop js-open-shop">Shop</button>
-            <div class="shop-items js-shop-items shop-hidden">
-                <button class="item js-item js-smart-tv">Smart TV</button>
-                <button class="item js-item js-cooker">CuisineCooker3000</button>
-                <button class="item js-item js-smartphone">Smartphone</button>
-                <button class="item js-item js-scooter">trottinette 2000</button>
-            </div>
-            <div class="bonuses js-bonuses">
-            </div>
-        </div>
+
     </div>
     <script src="js/main.js"></script>
 </body>

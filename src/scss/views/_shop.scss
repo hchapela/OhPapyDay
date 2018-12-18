@@ -1,0 +1,30 @@
+button.open-shop {
+    padding: 15px;
+    outline: none;
+    background-color: $lightPink;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 9px $darkPink;
+
+    .icon {
+        transform: scale(1.4);
+        fill: $white;
+    }
+
+    &:active {
+        transform: translateY(5px);
+    }
+}
+
+.shop {
+    width: 100vw;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.shop-hidden {
+    opacity: 0;
+}

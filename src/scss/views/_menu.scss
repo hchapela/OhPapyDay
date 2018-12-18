@@ -5,12 +5,11 @@
     background: $lightPurple;
     position: absolute;
     display: flex;
+    transition-duration: 0.2s;
 }
 
 .hamburger-deploy {
     transform: translateX(-100%);
-    transition-duration: 0.2s;
-    transition-timing-function: ease-in-out;
 }
 
 .menu-links {

@@ -50,7 +50,8 @@ html {
 
 body {
   overflow: hidden;
-  background: black;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#694383), color-stop(#533272), color-stop(#3d2162), color-stop(#271152), to(#0e0043));
+  background-image: linear-gradient(to bottom, #694383, #533272, #3d2162, #271152, #0e0043);
   width: 100vw;
   height: 100vh;
   font-size: 1.4rem;
@@ -68,7 +69,8 @@ body > .container {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #fffdf1;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#694383), color-stop(#533272), color-stop(#3d2162), color-stop(#271152), to(#0e0043));
+  background-image: linear-gradient(to bottom, #694383, #533272, #3d2162, #271152, #0e0043);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -80,19 +82,6 @@ body > .container {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 30px; }
-
-.controls button.activity {
-  background: black;
-  padding: 15px 25px;
-  color: white;
-  margin: 30px; }
-
-button.shop {
-  padding: 15px 30px;
-  position: absolute;
-  bottom: 200px;
-  background: white;
-  color: black; }
 
 .container .statuses {
   background: green;
@@ -174,6 +163,8 @@ button.shop {
       -ms-flex-pack: center;
           justify-content: center; }
   .container .controls button.activity {
+    margin: 20px;
+    padding: 15px;
     outline: none;
     background-color: #f3d15f;
     border: none;
@@ -205,6 +196,42 @@ button.shop {
     width: 0%; }
   100% {
     width: 100%; } }
+
+button.open-shop {
+  padding: 15px;
+  outline: none;
+  background-color: #C66FFF;
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 9px #7128A2;
+          box-shadow: 0 9px #7128A2; }
+  button.open-shop .icon {
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+    fill: #FFF; }
+  button.open-shop:active {
+    -webkit-transform: translateY(5px);
+            transform: translateY(5px); }
+
+.shop {
+  width: 100vw;
+  height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.shop-hidden {
+  opacity: 0; }
 
 .menu-wrapper {
   z-index: 200;
@@ -279,15 +306,13 @@ button.shop {
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s; }
 
 .hamburger-deploy {
   -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
-  -webkit-transition-duration: 0.2s;
-          transition-duration: 0.2s;
-  -webkit-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out; }
+          transform: translateX(-100%); }
 
 .menu-links {
   margin: auto; }
