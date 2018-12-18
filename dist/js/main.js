@@ -156,6 +156,8 @@
         this.$shop = document.querySelector('.js-shop');
         this.$shopButton = this.$shop.querySelector('.js-open-shop');
         this.$shopItems = this.$shop.querySelector('.js-shop-items');
+        this.$shopMenu = this.$shop.querySelector('.js-shop-menu');
+        this.$shopHamburger = this.$shop.querySelector('.js-hamburger-shop');
         this.$smartTv = this.$shop.querySelector('.js-smart-tv');
         this.$smartPhone = this.$shop.querySelector('.js-smartphone');
         this.$scooter = this.$shop.querySelector('.js-scooter');
@@ -166,10 +168,12 @@
         this.smartPhone = false;
         this.scooter = false;
         this.cooker = false;
+        this.isOpened = false;
         this.initScope();
         this.toggleShop();
         this.initBonuses();
         this.initItems();
+        this.initHamburger();
       }
 
       showBonus() {}
@@ -180,17 +184,11 @@
 
       toggleShop() {
         this.$shopButton.addEventListener('click', () => {
-          if (this.isClosed) {
-            // Stop the game while on shop
-            this.game.pause();
-            this.isClosed = false;
-            this.$shopItems.classList.remove('shop-hidden');
-          } else if (!this.isClosed) {
-            // Start the game again when leaving shop
-            this.game.play();
-            this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden');
-          }
+          // Stop the game while on shop
+          this.$shopHamburger.classList.add('animate');
+          this.game.pause();
+          this.isClosed = false;
+          this.$shopItems.style.transform = `translateY(0%)`;
         });
       } // Init bonuses at 0
 
@@ -306,6 +304,21 @@
               lonely: -10
             };
           }
+        });
+      }
+
+      initHamburger() {
+        this.$shopHamburger.addEventListener('click', () => {
+          this.$shopHamburger.classList.remove('animate');
+          window.setTimeout(() => {
+            // animate hamburger
+            this.$shopHamburger.classList.add('animate');
+            this.isOpened = true; // Start the game again when leaving shop
+
+            this.game.play();
+            this.isClosed = true;
+            this.$shopItems.style.transform = `translateY(100%)`;
+          }, 300);
         });
       }
 
@@ -412,6 +425,8 @@
         this.$shop = document.querySelector('.js-shop');
         this.$shopButton = this.$shop.querySelector('.js-open-shop');
         this.$shopItems = this.$shop.querySelector('.js-shop-items');
+        this.$shopMenu = this.$shop.querySelector('.js-shop-menu');
+        this.$shopHamburger = this.$shop.querySelector('.js-hamburger-shop');
         this.$smartTv = this.$shop.querySelector('.js-smart-tv');
         this.$smartPhone = this.$shop.querySelector('.js-smartphone');
         this.$scooter = this.$shop.querySelector('.js-scooter');
@@ -422,10 +437,12 @@
         this.smartPhone = false;
         this.scooter = false;
         this.cooker = false;
+        this.isOpened = false;
         this.initScope();
         this.toggleShop();
         this.initBonuses();
         this.initItems();
+        this.initHamburger();
       }
 
       showBonus() {}
@@ -436,17 +453,11 @@
 
       toggleShop() {
         this.$shopButton.addEventListener('click', () => {
-          if (this.isClosed) {
-            // Stop the game while on shop
-            this.game.pause();
-            this.isClosed = false;
-            this.$shopItems.classList.remove('shop-hidden');
-          } else if (!this.isClosed) {
-            // Start the game again when leaving shop
-            this.game.play();
-            this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden');
-          }
+          // Stop the game while on shop
+          this.$shopHamburger.classList.add('animate');
+          this.game.pause();
+          this.isClosed = false;
+          this.$shopItems.style.transform = `translateY(0%)`;
         });
       } // Init bonuses at 0
 
@@ -562,6 +573,21 @@
               lonely: -10
             };
           }
+        });
+      }
+
+      initHamburger() {
+        this.$shopHamburger.addEventListener('click', () => {
+          this.$shopHamburger.classList.remove('animate');
+          window.setTimeout(() => {
+            // animate hamburger
+            this.$shopHamburger.classList.add('animate');
+            this.isOpened = true; // Start the game again when leaving shop
+
+            this.game.play();
+            this.isClosed = true;
+            this.$shopItems.style.transform = `translateY(100%)`;
+          }, 300);
         });
       }
 
