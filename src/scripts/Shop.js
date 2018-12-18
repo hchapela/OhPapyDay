@@ -1,6 +1,5 @@
 /* TODO
     Better dom manipulation
-    Delete clickable controls when game paused
 */
 
 module.exports = class Shop {
@@ -41,11 +40,15 @@ module.exports = class Shop {
                 window.clearInterval(this.game.isPlaying)
                 this.isClosed = false
                 this.$shopItems.classList.remove('shop-hidden')
+                // Enable controls
+                this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = false
             } else if (!this.isClosed) {
                 // Start the game again when leaving shop
                 this.game.isPlaying = window.setInterval(this.game.tick, 1000)
                 this.isClosed = true
                 this.$shopItems.classList.add('shop-hidden')
+                // Disable controls
+                this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = true
             }
         })
     }
@@ -80,6 +83,8 @@ module.exports = class Shop {
 
     // Show new bonus bought
     showBonus(_str) {
+        console.log('Show bonus!');
+        
         // Create div of new bonus
         this.$newBonus = document.createElement('div')
         this.$newBonus.classList.add('bonus')

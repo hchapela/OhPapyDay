@@ -30,7 +30,6 @@ class Game {
         this.bored = 0
         this.lonely = 0
         this.difficulty = 1
-        this.coolDownRatio = 0
 
         // Fix scope issues with methods
         this.initScope()
@@ -44,7 +43,7 @@ class Game {
 
     initScope() {
         this.tick = this.tick.bind(this)
-        this.isLoosed = this.isLoosed.bind(this)
+        this.isLost = this.isLost.bind(this)
         this.tvAction = this.tvAction.bind(this)
         this.goOutAction = this.goOutAction.bind(this)
         this.cookAction = this.cookAction.bind(this)
@@ -91,11 +90,11 @@ class Game {
 
     tick() {
         // Chec if game is Loosed
-        this.isLoosed()
+        this.isLost()
         // One tick
         this.time += 1
-        this.difficulty++
-        this.coolDownRatio += 1000
+        // Difficulty raise every 10s
+        this.difficulty += (this.time % 10 === 0 ? 1 : 0)
         this.bored = this.bored + this.difficulty
         this.tired = this.tired + this.difficulty
         this.lonely = this.lonely + this.difficulty
@@ -106,7 +105,7 @@ class Game {
         // window.requestAnimationFrame(this.tick)
     }
 
-    isLoosed() {
+    isLost() {
         if (this.bored + this.difficulty > 100 ||
             this.tired + this.difficulty > 100 ||
             this.lonely + this.difficulty > 100
@@ -122,10 +121,8 @@ class Game {
         this.$cook.addEventListener('click', this.cookAction)
         this.$phone.addEventListener('click', this.phoneAction)
 
-        this.tvActive = true
-        this.goOutActive = true
-        this.cookActive = true
-        this.phoneActive = true
+        // Enable controls
+        this.tvActive = this.goOutActive = this.cookActive = this.phoneActive = true
     }
 
     tvAction() {
@@ -178,25 +175,25 @@ class Game {
                 this.tvActive = false
                 window.setTimeout(() => {
                     this.tvActive = true
-                }, 1000 - this.coolDownRatio)
+                }, 1000)
                 break
             case 'goOut':
                 this.goOutActive = false
                 window.setTimeout(() => {
                     this.goOutActive = true
-                }, 6000 - this.coolDownRatio)
+                }, 6000)
                 break
             case 'cook':
                 this.cookActive = false
                 window.setTimeout(() => {
                     this.cookActive = true
-                }, 4000 - this.coolDownRatio)
+                }, 4000)
                 break
             case 'phone':
                 this.phoneActive = false
                 window.setTimeout(() => {
                     this.phoneActive = true
-                }, 6000 - this.coolDownRatio)
+                }, 6000)
                 break
         }
     }

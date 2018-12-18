@@ -86,7 +86,6 @@
   1: [function (require, module, exports) {
     /* TODO
         Better dom manipulation
-        Delete clickable controls when game paused
     */
     module.exports = class Shop {
       constructor(_game) {
@@ -122,12 +121,16 @@
             // Stop the game while on shop
             window.clearInterval(this.game.isPlaying);
             this.isClosed = false;
-            this.$shopItems.classList.remove('shop-hidden');
+            this.$shopItems.classList.remove('shop-hidden'); // Enable controls
+
+            this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = false;
           } else if (!this.isClosed) {
             // Start the game again when leaving shop
             this.game.isPlaying = window.setInterval(this.game.tick, 1000);
             this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden');
+            this.$shopItems.classList.add('shop-hidden'); // Disable controls
+
+            this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = true;
           }
         });
       } // Init bonuses at 0
@@ -162,7 +165,8 @@
 
 
       showBonus(_str) {
-        // Create div of new bonus
+        console.log('Show bonus!'); // Create div of new bonus
+
         this.$newBonus = document.createElement('div');
         this.$newBonus.classList.add('bonus');
         this.$newBonus.classList.add('js-bonus'); // Create text of new bonus
@@ -308,7 +312,6 @@
   2: [function (require, module, exports) {
     /* TODO
         Better dom manipulation
-        Delete clickable controls when game paused
     */
     module.exports = class Shop {
       constructor(_game) {
@@ -344,12 +347,16 @@
             // Stop the game while on shop
             window.clearInterval(this.game.isPlaying);
             this.isClosed = false;
-            this.$shopItems.classList.remove('shop-hidden');
+            this.$shopItems.classList.remove('shop-hidden'); // Enable controls
+
+            this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = false;
           } else if (!this.isClosed) {
             // Start the game again when leaving shop
             this.game.isPlaying = window.setInterval(this.game.tick, 1000);
             this.isClosed = true;
-            this.$shopItems.classList.add('shop-hidden');
+            this.$shopItems.classList.add('shop-hidden'); // Disable controls
+
+            this.game.tvActive = this.game.goOutActive = this.game.cookActive = this.game.phoneActive = true;
           }
         });
       } // Init bonuses at 0
@@ -384,7 +391,8 @@
 
 
       showBonus(_str) {
-        // Create div of new bonus
+        console.log('Show bonus!'); // Create div of new bonus
+
         this.$newBonus = document.createElement('div');
         this.$newBonus.classList.add('bonus');
         this.$newBonus.classList.add('js-bonus'); // Create text of new bonus
@@ -501,8 +509,7 @@
         this.tired = 0;
         this.bored = 0;
         this.lonely = 0;
-        this.difficulty = 1;
-        this.coolDownRatio = 0; // Fix scope issues with methods
+        this.difficulty = 1; // Fix scope issues with methods
 
         this.initScope(); // Init Game
 
@@ -515,7 +522,7 @@
 
       initScope() {
         this.tick = this.tick.bind(this);
-        this.isLoosed = this.isLoosed.bind(this);
+        this.isLost = this.isLost.bind(this);
         this.tvAction = this.tvAction.bind(this);
         this.goOutAction = this.goOutAction.bind(this);
         this.cookAction = this.cookAction.bind(this);
@@ -560,11 +567,11 @@
 
       tick() {
         // Chec if game is Loosed
-        this.isLoosed(); // One tick
+        this.isLost(); // One tick
 
-        this.time += 1;
-        this.difficulty++;
-        this.coolDownRatio += 1000;
+        this.time += 1; // Difficulty raise every 10s
+
+        this.difficulty += this.time % 10 === 0 ? 1 : 0;
         this.bored = this.bored + this.difficulty;
         this.tired = this.tired + this.difficulty;
         this.lonely = this.lonely + this.difficulty;
@@ -574,7 +581,7 @@
       initTick() {// window.requestAnimationFrame(this.tick)
       }
 
-      isLoosed() {
+      isLost() {
         if (this.bored + this.difficulty > 100 || this.tired + this.difficulty > 100 || this.lonely + this.difficulty > 100) {
           window.clearInterval(this.isPlaying);
           console.log('This is the end');
@@ -585,11 +592,9 @@
         this.$tv.addEventListener('click', this.tvAction);
         this.$goOut.addEventListener('click', this.goOutAction);
         this.$cook.addEventListener('click', this.cookAction);
-        this.$phone.addEventListener('click', this.phoneAction);
-        this.tvActive = true;
-        this.goOutActive = true;
-        this.cookActive = true;
-        this.phoneActive = true;
+        this.$phone.addEventListener('click', this.phoneAction); // Enable controls
+
+        this.tvActive = this.goOutActive = this.cookActive = this.phoneActive = true;
       }
 
       tvAction() {
@@ -642,28 +647,28 @@
             this.tvActive = false;
             window.setTimeout(() => {
               this.tvActive = true;
-            }, 1000 - this.coolDownRatio);
+            }, 1000);
             break;
 
           case 'goOut':
             this.goOutActive = false;
             window.setTimeout(() => {
               this.goOutActive = true;
-            }, 6000 - this.coolDownRatio);
+            }, 6000);
             break;
 
           case 'cook':
             this.cookActive = false;
             window.setTimeout(() => {
               this.cookActive = true;
-            }, 4000 - this.coolDownRatio);
+            }, 4000);
             break;
 
           case 'phone':
             this.phoneActive = false;
             window.setTimeout(() => {
               this.phoneActive = true;
-            }, 6000 - this.coolDownRatio);
+            }, 6000);
             break;
         }
       }
