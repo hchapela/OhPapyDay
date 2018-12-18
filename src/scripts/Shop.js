@@ -1,5 +1,4 @@
 /* TODO
-    show Bonuses icons
     Better dom manipulation
     Delete clickable controls when game paused
 */
@@ -14,6 +13,7 @@ module.exports = class Shop {
         this.$smartPhone = this.$shop.querySelector('.js-smartphone')
         this.$scooter = this.$shop.querySelector('.js-scooter')
         this.$cooker = this.$shop.querySelector('.js-cooker')
+        this.$bonuses = document.querySelector('.js-bonuses')
         this.isClosed = true
         this.smartTv = false
         this.smartPhone = false
@@ -78,6 +78,20 @@ module.exports = class Shop {
         }
     }
 
+    // Show new bonus bought
+    showBonus(_str) {
+        // Create div of new bonus
+        this.$newBonus = document.createElement('div')
+        this.$newBonus.classList.add('bonus')
+        this.$newBonus.classList.add('js-bonus')
+        // Create text of new bonus
+        this.$newBonusTitle = document.createElement('p')
+        this.$newBonusTitle.innerText = _str
+        // Input elements in HTML
+        this.$bonuses.appendChild(this.$newBonus)
+        this.$newBonus.appendChild(this.$newBonusTitle)
+    }
+
     // Factorisation of function initItems for similar lines
     shoppedEvent(_cost) {
         // Close shop after buying anything
@@ -88,6 +102,7 @@ module.exports = class Shop {
         // Start the game again when leaving shop
         this.game.isPlaying = window.setInterval(this.game.tick, 1000)
     }
+
 
     // Event on each item bought
     initItems() {
@@ -102,6 +117,7 @@ module.exports = class Shop {
                     bored: -10,
                     lonely: -10
                 }
+                this.showBonus('Smart TV')
             }
         })
         this.$smartPhone.addEventListener('click', () => {

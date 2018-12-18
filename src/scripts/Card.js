@@ -6,7 +6,7 @@
 */ 
 
 module.exports = class Card {
-    constructor(game) {
+    constructor(_game) {
         this.game = _game
         this.initScope()
         this.initCards()

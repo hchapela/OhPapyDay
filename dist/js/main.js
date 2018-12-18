@@ -34,7 +34,7 @@
         act on game
     */
     module.exports = class Card {
-      constructor(game) {
+      constructor(_game) {
         this.game = _game;
         this.initScope();
         this.initCards();
@@ -85,7 +85,6 @@
 })({
   1: [function (require, module, exports) {
     /* TODO
-        show Bonuses icons
         Better dom manipulation
         Delete clickable controls when game paused
     */
@@ -99,6 +98,7 @@
         this.$smartPhone = this.$shop.querySelector('.js-smartphone');
         this.$scooter = this.$shop.querySelector('.js-scooter');
         this.$cooker = this.$shop.querySelector('.js-cooker');
+        this.$bonuses = document.querySelector('.js-bonuses');
         this.isClosed = true;
         this.smartTv = false;
         this.smartPhone = false;
@@ -158,6 +158,20 @@
           bored: 0,
           lonely: 0
         };
+      } // Show new bonus bought
+
+
+      showBonus(_str) {
+        // Create div of new bonus
+        this.$newBonus = document.createElement('div');
+        this.$newBonus.classList.add('bonus');
+        this.$newBonus.classList.add('js-bonus'); // Create text of new bonus
+
+        this.$newBonusTitle = document.createElement('p');
+        this.$newBonusTitle.innerText = _str; // Input elements in HTML
+
+        this.$bonuses.appendChild(this.$newBonus);
+        this.$newBonus.appendChild(this.$newBonusTitle);
       } // Factorisation of function initItems for similar lines
 
 
@@ -185,6 +199,7 @@
               bored: -10,
               lonely: -10
             };
+            this.showBonus('Smart TV');
           }
         });
         this.$smartPhone.addEventListener('click', () => {
@@ -270,7 +285,7 @@
         act on game
     */
     module.exports = class Card {
-      constructor(game) {
+      constructor(_game) {
         this.game = _game;
         this.initScope();
         this.initCards();
@@ -292,7 +307,6 @@
   }, {}],
   2: [function (require, module, exports) {
     /* TODO
-        show Bonuses icons
         Better dom manipulation
         Delete clickable controls when game paused
     */
@@ -306,6 +320,7 @@
         this.$smartPhone = this.$shop.querySelector('.js-smartphone');
         this.$scooter = this.$shop.querySelector('.js-scooter');
         this.$cooker = this.$shop.querySelector('.js-cooker');
+        this.$bonuses = document.querySelector('.js-bonuses');
         this.isClosed = true;
         this.smartTv = false;
         this.smartPhone = false;
@@ -365,6 +380,20 @@
           bored: 0,
           lonely: 0
         };
+      } // Show new bonus bought
+
+
+      showBonus(_str) {
+        // Create div of new bonus
+        this.$newBonus = document.createElement('div');
+        this.$newBonus.classList.add('bonus');
+        this.$newBonus.classList.add('js-bonus'); // Create text of new bonus
+
+        this.$newBonusTitle = document.createElement('p');
+        this.$newBonusTitle.innerText = _str; // Input elements in HTML
+
+        this.$bonuses.appendChild(this.$newBonus);
+        this.$newBonus.appendChild(this.$newBonusTitle);
       } // Factorisation of function initItems for similar lines
 
 
@@ -392,6 +421,7 @@
               bored: -10,
               lonely: -10
             };
+            this.showBonus('Smart TV');
           }
         });
         this.$smartPhone.addEventListener('click', () => {
@@ -443,7 +473,6 @@
   3: [function (require, module, exports) {
     /* TODO
         Show cooldowns on buttons
-        
     */
     const Shop = require('./Shop');
 
@@ -477,7 +506,7 @@
 
         this.initScope(); // Init Game
 
-        this.initGame();
+        this.play();
         this.initButtons();
         this.initTick();
         this.shop = new Shop(this);
@@ -494,11 +523,18 @@
         this.initTick = this.initTick.bind(this);
       }
 
-      initGame() {
+      play() {
         // Put game variables in HTML
-        this.changeValues(); // First tick
+        this.changeValues(); // play ticks
 
         this.isPlaying = window.setInterval(this.tick, 1000);
+      }
+
+      pause() {
+        // Put game variables in HTML
+        this.changeValues(); // pause ticks
+
+        window.clearInterval(this.isPlaying);
       }
 
       normalizeValue(value) {

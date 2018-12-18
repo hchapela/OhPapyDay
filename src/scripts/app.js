@@ -1,6 +1,5 @@
 /* TODO
     Show cooldowns on buttons
-    
 */ 
 
 const Shop = require('./Shop')
@@ -36,7 +35,7 @@ class Game {
         // Fix scope issues with methods
         this.initScope()
         // Init Game
-        this.initGame()
+        this.play()
         this.initButtons()
         this.initTick()
         this.shop = new Shop(this)
@@ -53,12 +52,20 @@ class Game {
         this.initTick = this.initTick.bind(this)
     }
 
-    initGame() {
+    play() {
         // Put game variables in HTML
         this.changeValues()
 
-        // First tick
+        // play ticks
         this.isPlaying = window.setInterval(this.tick, 1000)
+    }
+
+    pause() {
+        // Put game variables in HTML
+        this.changeValues()
+
+        // pause ticks
+        window.clearInterval(this.isPlaying)
     }
 
     normalizeValue(value) {
