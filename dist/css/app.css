@@ -150,9 +150,7 @@ body > .container {
           flex-direction: column; }
 
 .container .controls {
-  background: blue;
   height: 20%;
-  width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

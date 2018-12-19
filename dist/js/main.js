@@ -597,7 +597,6 @@
     /* TODO
         Show cooldowns on buttons
         Events
-        Hamburger Menu
         Starting cinematics
         Sounds
         Webview
