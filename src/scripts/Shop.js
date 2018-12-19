@@ -1,5 +1,6 @@
 /* TODO
-    show item bought
+    show item bought bug
+    show money in shop
 */
 
 module.exports = class Shop {
@@ -15,12 +16,19 @@ module.exports = class Shop {
         this.$scooter = this.$shop.querySelector('.js-scooter')
         this.$cooker = this.$shop.querySelector('.js-cooker')
         this.$bonuses = document.querySelector('.js-bonuses')
+        this.$bonusTv = this.$bonuses.querySelector('.smart-tv')
+        this.$bonusPhone = this.$bonuses.querySelector('.smart-phone')
+        this.$bonusCook = this.$bonuses.querySelector('.cooker')
+        this.$bonusOut = this.$bonuses.querySelector('.scooter')
+
         this.isClosed = true
         this.smartTv = false
         this.smartPhone = false
         this.scooter = false
         this.cooker = false
         this.isOpened = false
+
+
 
         // Items prices
         this.tvCost = 5000
@@ -39,22 +47,43 @@ module.exports = class Shop {
     checkBuyable() {
       // Check if you have the money and don't have it already
       if(this.smartTv) {
+        console.log(this.$smartTv);
+
         this.$smartTv.classList.add('disabled')
         this.$smartTv.innerText = 'Already Bought'
       } else if(this.smartPhone) {
+        console.log(this.$smartPhone);
+
         this.$smartPhone.classList.add('disabled')
         this.$smartPhone.innerText = 'Already Bought'
       } else if(this.cooker) {
+        console.log(this.$cooker);
+
         this.$cooker.classList.add('disabled')
         this.$cooker.innerText = 'Already Bought'
       } else if(this.scooter) {
+        console.log(this.$scooter);
+
         this.$scooter.classList.add('disabled')
         this.$scooter.innerText = 'Already Bought'
       }
     }
 
-    showBonus() {
-
+    showBonus(_bonus) {
+      switch(_bonus) {
+        case 'smartTv':
+          this.$bonusTv.classList.remove('hidden')
+          break
+        case 'smartPhone':
+          this.$bonusPhone.classList.remove('hidden')
+          break
+        case 'cooker':
+          this.$bonusCook.classList.remove('hidden')
+          break
+        case 'scooter':
+          this.$bonusOut.classList.remove('hidden')
+          break
+      }
     }
 
     initScope() {
@@ -64,7 +93,6 @@ module.exports = class Shop {
 
     toggleShop() {
         this.$shopButton.addEventListener('click', () => {
-          console.log('open shop');
             // Stop the game while on shop
             this.$shopHamburger.classList.add('animate')
             this.game.pause()
@@ -101,22 +129,6 @@ module.exports = class Shop {
         }
     }
 
-    // Show new bonus bought
-    showBonus(_str) {
-        console.log('Show bonus!');
-
-        // Create div of new bonus
-        this.$newBonus = document.createElement('div')
-        this.$newBonus.classList.add('bonus')
-        this.$newBonus.classList.add('js-bonus')
-        // Create text of new bonus
-        this.$newBonusTitle = document.createElement('p')
-        this.$newBonusTitle.innerText = _str
-        // Input elements in HTML
-        this.$bonuses.appendChild(this.$newBonus)
-        this.$newBonus.appendChild(this.$newBonusTitle)
-    }
-
     // Factorisation of function initItems for similar lines
     shoppedEvent(_cost) {
         // Close shop after buying anything
@@ -125,14 +137,12 @@ module.exports = class Shop {
         // Disable multiple buying for each item
         this.game.score -= _cost
         // Start the game again when leaving shop
-        this.game.play()
     }
 
 
     // Event on each item bought
     initItems() {
         this.$smartTv.addEventListener('click', () => {
-            console.log('bought');
             if (this.game.score > this.tvCost && !this.smartTV) {
                 this.shoppedEvent(this.tvCost)
                 this.smartTV = true
@@ -146,7 +156,8 @@ module.exports = class Shop {
                     lonely: -10
                 }
                 this.closeShop()
-                this.showBonus('Smart TV')
+                console.log('tv bought');
+                this.showBonus('smartTv')
             }
         })
         this.$smartPhone.addEventListener('click', () => {
@@ -161,6 +172,7 @@ module.exports = class Shop {
                     lonely: -10
                 }
                 this.closeShop()
+                this.showBonus('smartPhone')
             }
         })
         this.$scooter.addEventListener('click', () => {
@@ -175,6 +187,7 @@ module.exports = class Shop {
                     lonely: -10
                 }
                 this.closeShop()
+                this.showBonus('scooter')
             }
         })
         this.$cooker.addEventListener('click', () => {
@@ -189,6 +202,7 @@ module.exports = class Shop {
                     lonely: -10
                 }
                 this.closeShop()
+                this.showBonus('cooker')
             }
         })
     }

@@ -148,7 +148,8 @@
 })({
   1: [function (require, module, exports) {
     /* TODO
-        show item bought
+        show item bought bug
+        show money in shop
     */
     module.exports = class Shop {
       constructor(_game) {
@@ -163,6 +164,10 @@
         this.$scooter = this.$shop.querySelector('.js-scooter');
         this.$cooker = this.$shop.querySelector('.js-cooker');
         this.$bonuses = document.querySelector('.js-bonuses');
+        this.$bonusTv = this.$bonuses.querySelector('.smart-tv');
+        this.$bonusPhone = this.$bonuses.querySelector('.smart-phone');
+        this.$bonusCook = this.$bonuses.querySelector('.cooker');
+        this.$bonusOut = this.$bonuses.querySelector('.scooter');
         this.isClosed = true;
         this.smartTv = false;
         this.smartPhone = false;
@@ -184,21 +189,43 @@
       checkBuyable() {
         // Check if you have the money and don't have it already
         if (this.smartTv) {
+          console.log(this.$smartTv);
           this.$smartTv.classList.add('disabled');
           this.$smartTv.innerText = 'Already Bought';
         } else if (this.smartPhone) {
+          console.log(this.$smartPhone);
           this.$smartPhone.classList.add('disabled');
           this.$smartPhone.innerText = 'Already Bought';
         } else if (this.cooker) {
+          console.log(this.$cooker);
           this.$cooker.classList.add('disabled');
           this.$cooker.innerText = 'Already Bought';
         } else if (this.scooter) {
+          console.log(this.$scooter);
           this.$scooter.classList.add('disabled');
           this.$scooter.innerText = 'Already Bought';
         }
       }
 
-      showBonus() {}
+      showBonus(_bonus) {
+        switch (_bonus) {
+          case 'smartTv':
+            this.$bonusTv.classList.remove('hidden');
+            break;
+
+          case 'smartPhone':
+            this.$bonusPhone.classList.remove('hidden');
+            break;
+
+          case 'cooker':
+            this.$bonusCook.classList.remove('hidden');
+            break;
+
+          case 'scooter':
+            this.$bonusOut.classList.remove('hidden');
+            break;
+        }
+      }
 
       initScope() {
         this.toggleShop = this.toggleShop.bind(this);
@@ -207,8 +234,7 @@
 
       toggleShop() {
         this.$shopButton.addEventListener('click', () => {
-          console.log('open shop'); // Stop the game while on shop
-
+          // Stop the game while on shop
           this.$shopHamburger.classList.add('animate');
           this.game.pause();
           this.isClosed = false;
@@ -242,21 +268,6 @@
           bored: 0,
           lonely: 0
         };
-      } // Show new bonus bought
-
-
-      showBonus(_str) {
-        console.log('Show bonus!'); // Create div of new bonus
-
-        this.$newBonus = document.createElement('div');
-        this.$newBonus.classList.add('bonus');
-        this.$newBonus.classList.add('js-bonus'); // Create text of new bonus
-
-        this.$newBonusTitle = document.createElement('p');
-        this.$newBonusTitle.innerText = _str; // Input elements in HTML
-
-        this.$bonuses.appendChild(this.$newBonus);
-        this.$newBonus.appendChild(this.$newBonusTitle);
       } // Factorisation of function initItems for similar lines
 
 
@@ -266,15 +277,11 @@
         this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
 
         this.game.score -= _cost; // Start the game again when leaving shop
-
-        this.game.play();
       } // Event on each item bought
 
 
       initItems() {
         this.$smartTv.addEventListener('click', () => {
-          console.log('bought');
-
           if (this.game.score > this.tvCost && !this.smartTV) {
             this.shoppedEvent(this.tvCost);
             this.smartTV = true;
@@ -287,7 +294,8 @@
               lonely: -10
             };
             this.closeShop();
-            this.showBonus('Smart TV');
+            console.log('tv bought');
+            this.showBonus('smartTv');
           }
         });
         this.$smartPhone.addEventListener('click', () => {
@@ -302,6 +310,7 @@
               lonely: -10
             };
             this.closeShop();
+            this.showBonus('smartPhone');
           }
         });
         this.$scooter.addEventListener('click', () => {
@@ -316,6 +325,7 @@
               lonely: -10
             };
             this.closeShop();
+            this.showBonus('scooter');
           }
         });
         this.$cooker.addEventListener('click', () => {
@@ -330,6 +340,7 @@
               lonely: -10
             };
             this.closeShop();
+            this.showBonus('cooker');
           }
         });
       }
@@ -446,7 +457,8 @@
   }, {}],
   3: [function (require, module, exports) {
     /* TODO
-        show item bought
+        show item bought bug
+        show money in shop
     */
     module.exports = class Shop {
       constructor(_game) {
@@ -461,6 +473,10 @@
         this.$scooter = this.$shop.querySelector('.js-scooter');
         this.$cooker = this.$shop.querySelector('.js-cooker');
         this.$bonuses = document.querySelector('.js-bonuses');
+        this.$bonusTv = this.$bonuses.querySelector('.smart-tv');
+        this.$bonusPhone = this.$bonuses.querySelector('.smart-phone');
+        this.$bonusCook = this.$bonuses.querySelector('.cooker');
+        this.$bonusOut = this.$bonuses.querySelector('.scooter');
         this.isClosed = true;
         this.smartTv = false;
         this.smartPhone = false;
@@ -482,21 +498,43 @@
       checkBuyable() {
         // Check if you have the money and don't have it already
         if (this.smartTv) {
+          console.log(this.$smartTv);
           this.$smartTv.classList.add('disabled');
           this.$smartTv.innerText = 'Already Bought';
         } else if (this.smartPhone) {
+          console.log(this.$smartPhone);
           this.$smartPhone.classList.add('disabled');
           this.$smartPhone.innerText = 'Already Bought';
         } else if (this.cooker) {
+          console.log(this.$cooker);
           this.$cooker.classList.add('disabled');
           this.$cooker.innerText = 'Already Bought';
         } else if (this.scooter) {
+          console.log(this.$scooter);
           this.$scooter.classList.add('disabled');
           this.$scooter.innerText = 'Already Bought';
         }
       }
 
-      showBonus() {}
+      showBonus(_bonus) {
+        switch (_bonus) {
+          case 'smartTv':
+            this.$bonusTv.classList.remove('hidden');
+            break;
+
+          case 'smartPhone':
+            this.$bonusPhone.classList.remove('hidden');
+            break;
+
+          case 'cooker':
+            this.$bonusCook.classList.remove('hidden');
+            break;
+
+          case 'scooter':
+            this.$bonusOut.classList.remove('hidden');
+            break;
+        }
+      }
 
       initScope() {
         this.toggleShop = this.toggleShop.bind(this);
@@ -505,8 +543,7 @@
 
       toggleShop() {
         this.$shopButton.addEventListener('click', () => {
-          console.log('open shop'); // Stop the game while on shop
-
+          // Stop the game while on shop
           this.$shopHamburger.classList.add('animate');
           this.game.pause();
           this.isClosed = false;
@@ -540,21 +577,6 @@
           bored: 0,
           lonely: 0
         };
-      } // Show new bonus bought
-
-
-      showBonus(_str) {
-        console.log('Show bonus!'); // Create div of new bonus
-
-        this.$newBonus = document.createElement('div');
-        this.$newBonus.classList.add('bonus');
-        this.$newBonus.classList.add('js-bonus'); // Create text of new bonus
-
-        this.$newBonusTitle = document.createElement('p');
-        this.$newBonusTitle.innerText = _str; // Input elements in HTML
-
-        this.$bonuses.appendChild(this.$newBonus);
-        this.$newBonus.appendChild(this.$newBonusTitle);
       } // Factorisation of function initItems for similar lines
 
 
@@ -564,15 +586,11 @@
         this.$shopItems.classList.add('shop-hidden'); // Disable multiple buying for each item
 
         this.game.score -= _cost; // Start the game again when leaving shop
-
-        this.game.play();
       } // Event on each item bought
 
 
       initItems() {
         this.$smartTv.addEventListener('click', () => {
-          console.log('bought');
-
           if (this.game.score > this.tvCost && !this.smartTV) {
             this.shoppedEvent(this.tvCost);
             this.smartTV = true;
@@ -585,7 +603,8 @@
               lonely: -10
             };
             this.closeShop();
-            this.showBonus('Smart TV');
+            console.log('tv bought');
+            this.showBonus('smartTv');
           }
         });
         this.$smartPhone.addEventListener('click', () => {
@@ -600,6 +619,7 @@
               lonely: -10
             };
             this.closeShop();
+            this.showBonus('smartPhone');
           }
         });
         this.$scooter.addEventListener('click', () => {
@@ -614,6 +634,7 @@
               lonely: -10
             };
             this.closeShop();
+            this.showBonus('scooter');
           }
         });
         this.$cooker.addEventListener('click', () => {
@@ -628,6 +649,7 @@
               lonely: -10
             };
             this.closeShop();
+            this.showBonus('cooker');
           }
         });
       }
@@ -654,12 +676,12 @@
   4: [function (require, module, exports) {
     /* TODO
         Show cooldowns on buttons
-        Events
         Starting cinematics
         Sounds
         Webview
         Calibrer
         End of the game screen score recap
+        Events
     */
     const Shop = require('./Shop');
 
@@ -688,7 +710,7 @@
         this.card = new Card(this);
         this.controls = new Controls(this); // Get variables
 
-        this.score = 0;
+        this.score = 50000;
         this.time = 0;
         this.tired = 0;
         this.bored = 0;

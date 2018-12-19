@@ -1,11 +1,11 @@
 /* TODO
     Show cooldowns on buttons
-    Events
     Starting cinematics
     Sounds
     Webview
     Calibrer
     End of the game screen score recap
+    Events
 */
 
 const Shop = require('./Shop')
@@ -34,7 +34,7 @@ class Game {
         this.controls = new Controls(this)
 
         // Get variables
-        this.score = 0
+        this.score = 50000
         this.time = 0
         this.tired = 0
         this.bored = 0

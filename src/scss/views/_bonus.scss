@@ -1,0 +1,11 @@
+.bonuses {
+  display: flex;
+  flex-direction: row;
+  svg.icon {
+    fill: $lightGrey;
+    margin: 30px 15px;
+  }
+  svg.hidden {
+    opacity: 0.2;
+  }
+}

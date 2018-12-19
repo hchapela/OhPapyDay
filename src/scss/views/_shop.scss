@@ -18,7 +18,7 @@ button.open-shop {
 
 .shop {
     width: 100vw;
-    height: 200px;
+    margin: 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@ button.open-shop {
     .shop-container {
         z-index: 300;
         width: 100vw;
-        height: 90vh;
+        height: 100vh;
         position: absolute;
         display: flex;
         flex-direction: column;

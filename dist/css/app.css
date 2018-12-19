@@ -85,9 +85,6 @@ body > .container {
   padding: 30px; }
 
 .container .statuses {
-  background: green;
-  height: 20%;
-  width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -97,11 +94,24 @@ body > .container {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   position: relative; }
+  .container .statuses .head {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-right: 20px; }
+    .container .statuses .head img {
+      height: 90px; }
   .container .statuses p {
     position: absolute;
     top: -20px; }
@@ -219,7 +229,7 @@ button.open-shop {
 
 .shop {
   width: 100vw;
-  height: 200px;
+  margin: 20px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -236,7 +246,7 @@ button.open-shop {
   .shop .shop-container {
     z-index: 300;
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
     position: absolute;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -453,7 +463,7 @@ button.open-shop {
       -ms-flex-direction: column;
           flex-direction: column;
   margin: 20px auto;
-  width: 320px; }
+  width: 250px; }
   .shop-item .informations {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -491,3 +501,17 @@ button.open-shop {
       color: #bcbcbc;
       border: 2px solid #bcbcbc;
       pointer: not-allowed; }
+
+.bonuses {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+  .bonuses svg.icon {
+    fill: #F9F4EA;
+    margin: 30px 15px; }
+  .bonuses svg.hidden {
+    opacity: 0.2; }
