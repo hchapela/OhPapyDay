@@ -1,0 +1,29 @@
+.scorebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .score-container {
+        background-color: $yellowPrimary;
+        height: 50px;
+        width: 100px;
+        border-radius: 20px;
+        box-shadow: 0 6px $yellowSecondary;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.img-stamp {
+    z-index: 100;
+    transform: translateX(15px);
+    width: 55px;
+    height: 80px;
+    
+}
+
+.score {
+    color: $darkPurple;
+}
