@@ -229,10 +229,10 @@ button.open-shop {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+      -ms-flex-direction: row;
+          flex-direction: row; }
   .shop .shop-container {
     z-index: 300;
     width: 100vw;
@@ -452,8 +452,8 @@ button.open-shop {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 300px;
-  margin: 40px auto; }
+  margin: 20px auto;
+  width: 320px; }
   .shop-item .informations {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -482,10 +482,10 @@ button.open-shop {
     margin-top: 15px; }
     .shop-item .shopping-button button {
       padding: 15px 25px;
-      background: #171738;
-      color: #F9F4EA;
+      background: #f3d15f;
+      color: #171738;
       border-radius: 30px;
-      border: 2px solid #171738; }
+      border: 2px solid #f3d15f; }
     .shop-item .shopping-button button.disabled {
       background: #FFF;
       color: #bcbcbc;

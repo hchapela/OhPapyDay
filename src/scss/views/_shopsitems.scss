@@ -1,8 +1,8 @@
 .shop-item {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  margin: 40px auto;
+  margin: 20px auto;
+  width: 320px;
 
   .informations {
     display: flex;
@@ -34,10 +34,10 @@
     margin-top: 15px;
     button {
       padding: 15px 25px;
-      background: $darkPurple;
-      color: $lightGrey;
+      background: $yellowPrimary;
+      color: $darkPurple;
       border-radius: 30px;
-      border: 2px solid $darkPurple;
+      border: 2px solid $yellowPrimary;
     }
     button.disabled {
       background: $white;

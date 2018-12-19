@@ -29,6 +29,9 @@ class Game {
         this.$cook = this.$controls.querySelector('.js-cook .activity')
         this.$goOut = this.$controls.querySelector('.js-go-out .activity')
         this.$phone = this.$controls.querySelector('.js-phone .activity')
+        this.shop = new Shop(this)
+        this.card = new Card(this)
+        this.controls = new Controls(this)
 
         // Get variables
         this.score = 0
@@ -44,9 +47,7 @@ class Game {
         this.play()
         this.initButtons()
         this.initTick()
-        this.shop = new Shop(this)
-        this.card = new Card(this)
-        this.controls = new Controls(this)
+
     }
 
     initScope() {
@@ -106,6 +107,8 @@ class Game {
     tick() {
         // Chec if game is Loosed
         this.isLost()
+        // Check if something if buyable in shop
+        this.shop.checkBuyable()
         // One tick on time and cooldowns
         this.time += 1
         this.tvActive = this.decrement(this.tvActive)

@@ -22,7 +22,7 @@ button.open-shop {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 
     .shop-container {
         z-index: 300;
