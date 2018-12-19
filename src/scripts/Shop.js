@@ -81,7 +81,6 @@ module.exports = class Shop {
   }
 
   toggleShop() {
-    console.log('init toggle');
     this.$shopButton.addEventListener('click', () => {
       if (this.isClosed) {
         this.openShop()

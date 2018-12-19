@@ -165,7 +165,6 @@
         this.$score.innerText = this.game.finalScore;
         this.$sentence.innerText = this.sentences[Math.floor(Math.random() * this.sentences.length)];
         this.$replay.addEventListener('click', () => {
-          console.log('replay');
           location.reload();
         });
       }
@@ -290,7 +289,6 @@
       }
 
       toggleShop() {
-        console.log('init toggle');
         this.$shopButton.addEventListener('click', () => {
           if (this.isClosed) {
             this.openShop();
@@ -543,7 +541,6 @@
         this.$score.innerText = this.game.finalScore;
         this.$sentence.innerText = this.sentences[Math.floor(Math.random() * this.sentences.length)];
         this.$replay.addEventListener('click', () => {
-          console.log('replay');
           location.reload();
         });
       }
@@ -639,7 +636,6 @@
       }
 
       toggleShop() {
-        console.log('init toggle');
         this.$shopButton.addEventListener('click', () => {
           if (this.isClosed) {
             this.openShop();
@@ -1033,7 +1029,6 @@
     }
 
     const game = new Game();
-    console.log(game);
   }, {
     "./Card": 1,
     "./Controls": 2,
