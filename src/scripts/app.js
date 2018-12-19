@@ -26,6 +26,7 @@ class Game {
     this.$goOut = this.$controls.querySelector('.js-go-out .activity')
     this.$phone = this.$controls.querySelector('.js-phone .activity')
     this.$end = document.querySelector('.js-game-result')
+    this.$papy = this.$statuses.querySelector('.js-papy')
 
     // Sounds
     this.$bipAudio = new Audio('sounds/action.mp3')
@@ -121,6 +122,9 @@ class Game {
     // Check if cooldowns need controls update
     this.checkCoolDown()
 
+    // change papy's head
+    this.changePapy()
+
     // Make the final score
     this.finalScore = this.finalScore > this.score ? this.finalScore : this.score
     // Difficulty raise every 10s
@@ -131,7 +135,29 @@ class Game {
     this.changeValues()
   }
 
+  changePapy() {
+    if (this.bored + this.difficulty > 66 ||
+      this.tired + this.difficulty > 66 ||
+      this.lonely + this.difficulty > 66
+    ) {
+      this.$papy.src = 'img/papy-sad.png'
+    } else if (this.bored + this.difficulty > 33 ||
+      this.tired + this.difficulty > 33 ||
+      this.lonely + this.difficulty > 33
+    ) {
+      this.$papy.src = 'img/papy-medium.png'
+    } else if (this.bored + this.difficulty < 33 ||
+      this.tired + this.difficulty < 33 ||
+      this.lonely + this.difficulty < 33
+    ) {
+      this.$papy.src = 'img/papy.png'
+    }
+
+
+  }
+
   isLost() {
+    // Check if lost
     if (this.bored + this.difficulty > 100 ||
       this.tired + this.difficulty > 100 ||
       this.lonely + this.difficulty > 100
