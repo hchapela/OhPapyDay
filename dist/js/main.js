@@ -401,7 +401,6 @@
         this.$shopHamburger.classList.add('animate');
         window.setTimeout(() => {
           // animate hamburger
-          this.$shopHamburger.classList.remove('animate');
           this.isOpened = true; // Start the game again when leaving shop
 
           this.game.pause();
@@ -746,7 +745,6 @@
         this.$shopHamburger.classList.add('animate');
         window.setTimeout(() => {
           // animate hamburger
-          this.$shopHamburger.classList.remove('animate');
           this.isOpened = true; // Start the game again when leaving shop
 
           this.game.pause();
@@ -813,7 +811,7 @@
         this.controls = new Controls(this);
         this.result = new Result(this); // Get variables
 
-        this.score = 500000;
+        this.score = 0;
         this.time = 0;
         this.tired = 0;
         this.bored = 0;

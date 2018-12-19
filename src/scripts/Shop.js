@@ -200,7 +200,6 @@ module.exports = class Shop {
     this.$shopHamburger.classList.add('animate')
     window.setTimeout(() => {
       // animate hamburger
-      this.$shopHamburger.classList.remove('animate')
       this.isOpened = true
       // Start the game again when leaving shop
       this.game.pause()

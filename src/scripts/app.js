@@ -36,7 +36,7 @@ class Game {
     this.result = new Result(this)
 
     // Get variables
-    this.score = 500000
+    this.score = 0
     this.time = 0
     this.tired = 0
     this.bored = 0
