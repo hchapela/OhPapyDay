@@ -285,12 +285,13 @@
       }
 
       toggleShop() {
+        console.log('init toggle');
         this.$shopButton.addEventListener('click', () => {
-          // Stop the game while on shop
-          this.$shopHamburger.classList.add('animate');
-          this.game.pause();
-          this.isClosed = false;
-          this.$shopItems.style.transform = `translateY(0%)`;
+          if (this.isClosed) {
+            this.openShop();
+          } else {
+            this.closeShop();
+          }
         });
       } // Init bonuses at 0
 
@@ -394,6 +395,19 @@
             this.showBonus('cooker');
           }
         });
+      }
+
+      openShop() {
+        this.$shopHamburger.classList.add('animate');
+        window.setTimeout(() => {
+          // animate hamburger
+          this.$shopHamburger.classList.remove('animate');
+          this.isOpened = true; // Start the game again when leaving shop
+
+          this.game.pause();
+          this.isClosed = false;
+          this.$shopItems.style.transform = `translateY(0%)`;
+        }, 300);
       }
 
       closeShop() {
@@ -616,12 +630,13 @@
       }
 
       toggleShop() {
+        console.log('init toggle');
         this.$shopButton.addEventListener('click', () => {
-          // Stop the game while on shop
-          this.$shopHamburger.classList.add('animate');
-          this.game.pause();
-          this.isClosed = false;
-          this.$shopItems.style.transform = `translateY(0%)`;
+          if (this.isClosed) {
+            this.openShop();
+          } else {
+            this.closeShop();
+          }
         });
       } // Init bonuses at 0
 
@@ -727,6 +742,19 @@
         });
       }
 
+      openShop() {
+        this.$shopHamburger.classList.add('animate');
+        window.setTimeout(() => {
+          // animate hamburger
+          this.$shopHamburger.classList.remove('animate');
+          this.isOpened = true; // Start the game again when leaving shop
+
+          this.game.pause();
+          this.isClosed = false;
+          this.$shopItems.style.transform = `translateY(0%)`;
+        }, 300);
+      }
+
       closeShop() {
         this.$shopHamburger.classList.remove('animate');
         window.setTimeout(() => {
@@ -780,7 +808,6 @@
         this.$goOut = this.$controls.querySelector('.js-go-out .activity');
         this.$phone = this.$controls.querySelector('.js-phone .activity');
         this.$end = document.querySelector('.js-game-result');
-        this.shop = new Shop(this);
         this.shop = new Shop(this);
         this.card = new Card(this);
         this.controls = new Controls(this);
