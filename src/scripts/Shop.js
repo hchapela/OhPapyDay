@@ -46,13 +46,13 @@ module.exports = class Shop {
     if (this.smartTv) {
       this.$smartTv.classList.add('disabled')
       this.$smartTv.innerText = 'Already Bought'
-    } else if (this.smartPhone) {
+    } if (this.smartPhone) {
       this.$smartPhone.classList.add('disabled')
       this.$smartPhone.innerText = 'Already Bought'
-    } else if (this.cooker) {
+    } if (this.cooker) {
       this.$cooker.classList.add('disabled')
       this.$cooker.innerText = 'Already Bought'
-    } else if (this.scooter) {
+    } if (this.scooter) {
       this.$scooter.classList.add('disabled')
       this.$scooter.innerText = 'Already Bought'
     }
@@ -133,9 +133,9 @@ module.exports = class Shop {
   // Event on each item bought
   initItems() {
     this.$smartTv.addEventListener('click', () => {
-      if (this.game.score > this.tvCost && !this.smartTV) {
+      if (this.game.score > this.tvCost && !this.smartTv) {
         this.shoppedEvent(this.tvCost)
-        this.smartTV = true
+        this.smartTv = true
         this.$smartTv.innerText = 'Already Bought'
 
         // Iterm cost and bonuses implemented

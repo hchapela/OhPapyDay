@@ -36,7 +36,8 @@ class Game {
     this.result = new Result(this)
 
     // Get variables
-    this.score = 0
+    this.finalScore = 0
+    this.score = 90000
     this.time = 0
     this.tired = 0
     this.bored = 0
@@ -48,7 +49,6 @@ class Game {
     // Init Game
     this.play()
     this.initButtons()
-    this.initTick()
 
   }
 
@@ -59,7 +59,6 @@ class Game {
     this.goOutAction = this.goOutAction.bind(this)
     this.cookAction = this.cookAction.bind(this)
     this.phoneAction = this.phoneAction.bind(this)
-    this.initTick = this.initTick.bind(this)
   }
 
   play() {
@@ -96,7 +95,7 @@ class Game {
     this.$lonely.style.transform = `scaleX(${this.lonely / 100})`
 
     this.$score.textContent = this.score
-    this.$time.textContent = this.time
+    this.$time.textContent = this.time < 10 ? `0${this.time}` : this.time
   }
 
   decrement(_value) {
@@ -121,16 +120,14 @@ class Game {
     // Check if cooldowns need controls update
     this.checkCoolDown()
 
+    // Make the final score
+    this.finalScore = this.finalScore > this.score ? this.finalScore : this.score
     // Difficulty raise every 10s
     this.difficulty += (this.time % 10 === 0 ? 1 : 0)
     this.bored = this.bored + this.difficulty
     this.tired = this.tired + this.difficulty
     this.lonely = this.lonely + this.difficulty
     this.changeValues()
-  }
-
-  initTick() {
-    // window.requestAnimationFrame(this.tick)
   }
 
   isLost() {

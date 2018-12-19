@@ -15,27 +15,30 @@
       }
     }
 
-    p {
-        position: absolute;
-        top: -20px;
-    }
-
     .level {
         display: flex;
         align-items: center;
         transform: translateY(-100%);
         width: 200px;
-        height: 10px;
-        margin: 20px 0;
-        background: white;
+        height: 15px;
+        margin: 40px 0;
+        background: $white;
         transition: 0.2s ease-in-out;
-        border-radius: 5px;
+        border-radius: 7.5px;
+
+        p {
+          color: $lightGrey;
+          position: absolute;
+          top: -30px;
+          font-size: 1.8rem;
+          font-weight: 400;
+        }
 
         .fill {
             width: 100%;
             height: 100%;
-            border-radius: 5px;
-            background: black;
+            border-radius: 20px;
+            background: $lightPink;
             transform-origin: 0 0;
             transform: scaleX(0.5);
             will-change: transform;

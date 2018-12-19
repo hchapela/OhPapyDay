@@ -111,9 +111,6 @@ body > .container {
     margin-right: 20px; }
     .container .statuses .head img {
       height: 90px; }
-  .container .statuses p {
-    position: absolute;
-    top: -20px; }
   .container .statuses .level {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -124,17 +121,23 @@ body > .container {
     -webkit-transform: translateY(-100%);
             transform: translateY(-100%);
     width: 200px;
-    height: 10px;
-    margin: 20px 0;
-    background: white;
+    height: 15px;
+    margin: 40px 0;
+    background: #FFF;
     -webkit-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
-    border-radius: 5px; }
+    border-radius: 7.5px; }
+    .container .statuses .level p {
+      color: #F9F4EA;
+      position: absolute;
+      top: -30px;
+      font-size: 1.8rem;
+      font-weight: 400; }
     .container .statuses .level .fill {
       width: 100%;
       height: 100%;
-      border-radius: 5px;
-      background: black;
+      border-radius: 20px;
+      background: #C66FFF;
       -webkit-transform-origin: 0 0;
               transform-origin: 0 0;
       -webkit-transform: scaleX(0.5);
@@ -157,6 +160,7 @@ body > .container {
       -ms-flex-direction: row;
           flex-direction: row; }
   .container .main .time {
+    font-family: "Roboto Mono", monospace;
     margin-left: 20px;
     font-size: 2.4rem;
     font-weight: 600;
@@ -511,7 +515,7 @@ button.open-shop {
           flex-direction: row; }
   .bonuses svg.icon {
     fill: #F9F4EA;
-    margin: 30px 15px; }
+    margin: 0px 15px; }
   .bonuses svg.hidden {
     opacity: 0.2; }
 

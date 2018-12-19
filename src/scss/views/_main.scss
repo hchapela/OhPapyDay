@@ -6,6 +6,7 @@
     flex-direction: row ;
 
     .time {
+      font-family: $secondFont;
         margin-left: 20px;
         font-size: 2.4rem;
         font-weight: 600;
@@ -13,7 +14,7 @@
 
         .timer-icon {
             fill: $yellowPrimary;
-            
+
         }
     }
 }

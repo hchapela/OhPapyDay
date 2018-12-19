@@ -163,7 +163,7 @@
 
       initResult() {
         this.$result.classList.remove('hidden');
-        this.$score.innerText = this.game.score;
+        this.$score.innerText = this.game.finalScore;
         this.$sentence.innerText = this.sentences[Math.floor(Math.random() * this.sentences.length)];
         this.$replay.addEventListener('click', () => {
           console.log('replay');
@@ -247,13 +247,19 @@
         if (this.smartTv) {
           this.$smartTv.classList.add('disabled');
           this.$smartTv.innerText = 'Already Bought';
-        } else if (this.smartPhone) {
+        }
+
+        if (this.smartPhone) {
           this.$smartPhone.classList.add('disabled');
           this.$smartPhone.innerText = 'Already Bought';
-        } else if (this.cooker) {
+        }
+
+        if (this.cooker) {
           this.$cooker.classList.add('disabled');
           this.$cooker.innerText = 'Already Bought';
-        } else if (this.scooter) {
+        }
+
+        if (this.scooter) {
           this.$scooter.classList.add('disabled');
           this.$scooter.innerText = 'Already Bought';
         }
@@ -335,9 +341,9 @@
 
       initItems() {
         this.$smartTv.addEventListener('click', () => {
-          if (this.game.score > this.tvCost && !this.smartTV) {
+          if (this.game.score > this.tvCost && !this.smartTv) {
             this.shoppedEvent(this.tvCost);
-            this.smartTV = true;
+            this.smartTv = true;
             this.$smartTv.innerText = 'Already Bought'; // Iterm cost and bonuses implemented
 
             this.tvBonus = {
@@ -536,7 +542,7 @@
 
       initResult() {
         this.$result.classList.remove('hidden');
-        this.$score.innerText = this.game.score;
+        this.$score.innerText = this.game.finalScore;
         this.$sentence.innerText = this.sentences[Math.floor(Math.random() * this.sentences.length)];
         this.$replay.addEventListener('click', () => {
           console.log('replay');
@@ -591,13 +597,19 @@
         if (this.smartTv) {
           this.$smartTv.classList.add('disabled');
           this.$smartTv.innerText = 'Already Bought';
-        } else if (this.smartPhone) {
+        }
+
+        if (this.smartPhone) {
           this.$smartPhone.classList.add('disabled');
           this.$smartPhone.innerText = 'Already Bought';
-        } else if (this.cooker) {
+        }
+
+        if (this.cooker) {
           this.$cooker.classList.add('disabled');
           this.$cooker.innerText = 'Already Bought';
-        } else if (this.scooter) {
+        }
+
+        if (this.scooter) {
           this.$scooter.classList.add('disabled');
           this.$scooter.innerText = 'Already Bought';
         }
@@ -679,9 +691,9 @@
 
       initItems() {
         this.$smartTv.addEventListener('click', () => {
-          if (this.game.score > this.tvCost && !this.smartTV) {
+          if (this.game.score > this.tvCost && !this.smartTv) {
             this.shoppedEvent(this.tvCost);
-            this.smartTV = true;
+            this.smartTv = true;
             this.$smartTv.innerText = 'Already Bought'; // Iterm cost and bonuses implemented
 
             this.tvBonus = {
@@ -811,7 +823,8 @@
         this.controls = new Controls(this);
         this.result = new Result(this); // Get variables
 
-        this.score = 0;
+        this.finalScore = 0;
+        this.score = 90000;
         this.time = 0;
         this.tired = 0;
         this.bored = 0;
@@ -822,7 +835,6 @@
 
         this.play();
         this.initButtons();
-        this.initTick();
       }
 
       initScope() {
@@ -832,7 +844,6 @@
         this.goOutAction = this.goOutAction.bind(this);
         this.cookAction = this.cookAction.bind(this);
         this.phoneAction = this.phoneAction.bind(this);
-        this.initTick = this.initTick.bind(this);
       }
 
       play() {
@@ -867,7 +878,7 @@
         this.$bored.style.transform = `scaleX(${this.bored / 100})`;
         this.$lonely.style.transform = `scaleX(${this.lonely / 100})`;
         this.$score.textContent = this.score;
-        this.$time.textContent = this.time;
+        this.$time.textContent = this.time < 10 ? `0${this.time}` : this.time;
       }
 
       decrement(_value) {
@@ -890,16 +901,15 @@
         this.phoneActive = this.decrement(this.phoneActive);
         this.goOutActive = this.decrement(this.goOutActive); // Check if cooldowns need controls update
 
-        this.checkCoolDown(); // Difficulty raise every 10s
+        this.checkCoolDown(); // Make the final score
+
+        this.finalScore = this.finalScore > this.score ? this.finalScore : this.score; // Difficulty raise every 10s
 
         this.difficulty += this.time % 10 === 0 ? 1 : 0;
         this.bored = this.bored + this.difficulty;
         this.tired = this.tired + this.difficulty;
         this.lonely = this.lonely + this.difficulty;
         this.changeValues();
-      }
-
-      initTick() {// window.requestAnimationFrame(this.tick)
       }
 
       isLost() {

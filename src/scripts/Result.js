@@ -23,7 +23,7 @@ module.exports = class Result {
 
   initResult() {
     this.$result.classList.remove('hidden')
-    this.$score.innerText = this.game.score
+    this.$score.innerText = this.game.finalScore
     this.$sentence.innerText = this.sentences[Math.floor(Math.random() * this.sentences.length)]
     this.$replay.addEventListener('click', () => {
       console.log('replay');
