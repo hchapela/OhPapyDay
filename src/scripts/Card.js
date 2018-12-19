@@ -3,7 +3,7 @@
     puts values on events random
     how random they are
     act on game
-*/ 
+*/
 
 module.exports = class Card {
     constructor(_game) {
@@ -13,7 +13,6 @@ module.exports = class Card {
     }
 
     initScope() {
-        // this.newCard = this.newCard.bind(this)
     }
 
     newCard() {

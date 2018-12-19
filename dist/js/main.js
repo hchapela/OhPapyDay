@@ -40,8 +40,7 @@
         this.initCards();
       }
 
-      initScope() {// this.newCard = this.newCard.bind(this)
-      }
+      initScope() {}
 
       newCard() {
         this.newCard = document.createElement('div');
@@ -477,8 +476,7 @@
         this.initCards();
       }
 
-      initScope() {// this.newCard = this.newCard.bind(this)
-      }
+      initScope() {}
 
       newCard() {
         this.newCard = document.createElement('div');
@@ -786,12 +784,9 @@
   }, {}],
   5: [function (require, module, exports) {
     /* TODO
-        Show cooldowns on buttons
         Starting cinematics
-        Sounds
         Webview
         change head of papy
-        Events
     */
     const Shop = require('./Shop');
 
@@ -817,14 +812,17 @@
         this.$cook = this.$controls.querySelector('.js-cook .activity');
         this.$goOut = this.$controls.querySelector('.js-go-out .activity');
         this.$phone = this.$controls.querySelector('.js-phone .activity');
-        this.$end = document.querySelector('.js-game-result');
+        this.$end = document.querySelector('.js-game-result'); // Sounds
+
+        this.$bipAudio = new Audio('sounds/action.mp3');
+        this.$endAudio = new Audio('sounds/end.mp3');
         this.shop = new Shop(this);
         this.card = new Card(this);
         this.controls = new Controls(this);
         this.result = new Result(this); // Get variables
 
         this.finalScore = 0;
-        this.score = 90000;
+        this.score = 0;
         this.time = 0;
         this.tired = 0;
         this.bored = 0;
@@ -914,6 +912,7 @@
 
       isLost() {
         if (this.bored + this.difficulty > 100 || this.tired + this.difficulty > 100 || this.lonely + this.difficulty > 100) {
+          this.$endAudio.play();
           this.pause();
           this.result.initResult();
         }
@@ -930,6 +929,7 @@
 
       tvAction() {
         if (this.tvActive === 0) {
+          this.$bipAudio.play();
           this.score += 100 + this.shop.tvBonus.score;
           this.tired -= 20 + this.shop.tvBonus.tired;
           this.bored += 20 + this.shop.tvBonus.bored;
@@ -941,6 +941,7 @@
 
       goOutAction() {
         if (this.goOutActive === 0) {
+          this.$bipAudio.play();
           this.score += 800 + this.shop.goOutBonus.score;
           this.tired += 30 + this.shop.goOutBonus.tired;
           this.bored -= 20 + this.shop.goOutBonus.bored;
@@ -952,6 +953,7 @@
 
       cookAction() {
         if (this.cookActive === 0) {
+          this.$bipAudio.play();
           this.score += 250 + this.shop.cookBonus.score;
           this.tired += 10 + this.shop.cookBonus.tired;
           this.bored -= 30 + this.shop.cookBonus.bored;
@@ -963,6 +965,7 @@
 
       phoneAction() {
         if (this.phoneActive === 0) {
+          this.$bipAudio.play();
           this.score += 400 + this.shop.phoneBonus.score;
           this.tired -= 20 + this.shop.phoneBonus.tired;
           this.bored += 10 + this.shop.phoneBonus.bored;
