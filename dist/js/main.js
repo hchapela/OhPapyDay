@@ -786,7 +786,6 @@
     /* TODO
         Starting cinematics
         Webview
-        change head of papy
     */
     const Shop = require('./Shop');
 
@@ -823,7 +822,7 @@
         this.result = new Result(this); // Get variables
 
         this.finalScore = 0;
-        this.score = 0;
+        this.score = 9000000;
         this.time = 0;
         this.tired = 0;
         this.bored = 0;

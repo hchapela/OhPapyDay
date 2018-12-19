@@ -519,6 +519,11 @@ button.open-shop {
   .bonuses svg.hidden {
     opacity: 0.2; }
 
+.bonus-icon {
+  margin-right: 10px;
+  height: 30px;
+  width: 30px; }
+
 .game-result {
   width: 100vw;
   height: 100vh;
