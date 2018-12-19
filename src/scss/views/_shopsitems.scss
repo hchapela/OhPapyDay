@@ -1,0 +1,49 @@
+.shop-item {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 40px auto;
+
+  .informations {
+    display: flex;
+
+    svg {
+      fill: $secondaryText;
+      margin-right: 10px;
+    }
+
+    .informations-text {
+      h3 {
+        font-weight: 600;
+        font-size: 1.8rem;
+        color: $darkPurple;
+        margin-bottom: 5px;
+
+      }
+      p {
+        font-size: 1.4rem;
+        color: $secondaryText;
+      }
+    }
+  }
+
+  .shopping-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    button {
+      padding: 15px 25px;
+      background: $darkPurple;
+      color: $lightGrey;
+      border-radius: 30px;
+      border: 2px solid $darkPurple;
+    }
+    button.disabled {
+      background: $white;
+      color: $secondaryText;
+      border: 2px solid $secondaryText;
+      pointer: not-allowed;
+    }
+  }
+}

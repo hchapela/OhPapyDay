@@ -161,13 +161,11 @@
         this.$smartTv = this.$shop.querySelector('.js-smart-tv');
         this.$smartPhone = this.$shop.querySelector('.js-smartphone');
         this.$scooter = this.$shop.querySelector('.js-scooter');
-        this.$cooker = this.$shop.querySelector('.js-cooker');
         this.$bonuses = document.querySelector('.js-bonuses');
         this.isClosed = true;
         this.smartTv = false;
         this.smartPhone = false;
         this.scooter = false;
-        this.cooker = false;
         this.isOpened = false;
         this.initScope();
         this.toggleShop();
@@ -201,12 +199,6 @@
           lonely: 0
         };
         this.goOutBonus = {
-          score: 0,
-          tired: 0,
-          bored: 0,
-          lonely: 0
-        };
-        this.cookBonus = {
           score: 0,
           tired: 0,
           bored: 0,
@@ -284,20 +276,6 @@
             this.shoppedEvent(cost); // Iterm cost and bonuses implemented
 
             this.goOutBonus = {
-              score: 30,
-              tired: -20,
-              bored: -10,
-              lonely: -10
-            };
-          }
-        });
-        this.$cooker.addEventListener('click', () => {
-          const cost = 5000;
-
-          if (this.game.score > cost && !this.cooker) {
-            this.shoppedEvent(cost); // Iterm cost and bonuses implemented
-
-            this.cookBonus = {
               score: 30,
               tired: -20,
               bored: -10,
@@ -430,13 +408,11 @@
         this.$smartTv = this.$shop.querySelector('.js-smart-tv');
         this.$smartPhone = this.$shop.querySelector('.js-smartphone');
         this.$scooter = this.$shop.querySelector('.js-scooter');
-        this.$cooker = this.$shop.querySelector('.js-cooker');
         this.$bonuses = document.querySelector('.js-bonuses');
         this.isClosed = true;
         this.smartTv = false;
         this.smartPhone = false;
         this.scooter = false;
-        this.cooker = false;
         this.isOpened = false;
         this.initScope();
         this.toggleShop();
@@ -470,12 +446,6 @@
           lonely: 0
         };
         this.goOutBonus = {
-          score: 0,
-          tired: 0,
-          bored: 0,
-          lonely: 0
-        };
-        this.cookBonus = {
           score: 0,
           tired: 0,
           bored: 0,
@@ -560,20 +530,6 @@
             };
           }
         });
-        this.$cooker.addEventListener('click', () => {
-          const cost = 5000;
-
-          if (this.game.score > cost && !this.cooker) {
-            this.shoppedEvent(cost); // Iterm cost and bonuses implemented
-
-            this.cookBonus = {
-              score: 30,
-              tired: -20,
-              bored: -10,
-              lonely: -10
-            };
-          }
-        });
       }
 
       initHamburger() {
@@ -602,7 +558,6 @@
         Webview
         Calibrer
         End of the game screen score recap
-        favicon
     */
     const Shop = require('./Shop');
 

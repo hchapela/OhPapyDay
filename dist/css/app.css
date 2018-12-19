@@ -56,6 +56,7 @@ body {
   height: 100vh;
   font-size: 1.4rem;
   font-family: "Montserrat";
+  line-height: 1.8rem;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -235,11 +236,15 @@ button.open-shop {
   .shop .shop-container {
     z-index: 300;
     width: 100vw;
-    height: 70vh;
+    height: 90vh;
     position: absolute;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     bottom: 0;
     background: #FFF;
     -webkit-transform: translateY(100%);
@@ -313,7 +318,7 @@ button.open-shop {
   transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1); }
 
 .menu-wrapper {
-  z-index: 200;
+  z-index: 400;
   position: absolute;
   right: 0px;
   top: 20px;
@@ -378,7 +383,7 @@ button.open-shop {
   transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1); }
 
 .menu-container {
-  z-index: 100;
+  z-index: 300;
   width: 100vw;
   height: 100vh;
   background: #7D48FF;
@@ -438,3 +443,51 @@ button.open-shop {
 
 .score {
   color: #171738; }
+
+.shop-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 300px;
+  margin: 40px auto; }
+  .shop-item .informations {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .shop-item .informations svg {
+      fill: #bcbcbc;
+      margin-right: 10px; }
+    .shop-item .informations .informations-text h3 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: #171738;
+      margin-bottom: 5px; }
+    .shop-item .informations .informations-text p {
+      font-size: 1.4rem;
+      color: #bcbcbc; }
+  .shop-item .shopping-button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 15px; }
+    .shop-item .shopping-button button {
+      padding: 15px 25px;
+      background: #171738;
+      color: #F9F4EA;
+      border-radius: 30px;
+      border: 2px solid #171738; }
+    .shop-item .shopping-button button.disabled {
+      background: #FFF;
+      color: #bcbcbc;
+      border: 2px solid #bcbcbc;
+      pointer: not-allowed; }

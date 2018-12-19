@@ -6,7 +6,6 @@
     Webview
     Calibrer
     End of the game screen score recap
-    favicon
 */
 
 const Shop = require('./Shop')
@@ -38,7 +37,7 @@ class Game {
         this.bored = 0
         this.lonely = 0
         this.difficulty = 1
-        
+
         // Fix scope issues with methods
         this.initScope()
         // Init Game
@@ -113,10 +112,10 @@ class Game {
         this.cookActive = this.decrement(this.cookActive)
         this.phoneActive = this.decrement(this.phoneActive)
         this.goOutActive = this.decrement(this.goOutActive)
-        
+
         // Check if cooldowns need controls update
         this.checkCoolDown()
-        
+
         // Difficulty raise every 10s
         this.difficulty += (this.time % 10 === 0 ? 1 : 0)
         this.bored = this.bored + this.difficulty
@@ -144,7 +143,7 @@ class Game {
         this.$goOut.addEventListener('click', this.goOutAction)
         this.$cook.addEventListener('click', this.cookAction)
         this.$phone.addEventListener('click', this.phoneAction)
-        
+
         // Enable controls
         this.tvActive = this.goOutActive = this.cookActive = this.phoneActive = 0
     }
