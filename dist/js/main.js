@@ -288,10 +288,10 @@
             this.$smartTv.innerText = 'Already Bought'; // Iterm cost and bonuses implemented
 
             this.tvBonus = {
-              score: 30,
-              tired: -20,
-              bored: -10,
-              lonely: -10
+              score: 50,
+              tired: 0,
+              bored: +20,
+              lonely: -0
             };
             this.closeShop();
             console.log('tv bought');
@@ -304,10 +304,10 @@
             this.smartPhone = true; // Iterm cost and bonuses implemented
 
             this.phoneBonus = {
-              score: 30,
-              tired: -20,
-              bored: -10,
-              lonely: -10
+              score: 200,
+              tired: -10,
+              bored: 0,
+              lonely: 0
             };
             this.closeShop();
             this.showBonus('smartPhone');
@@ -319,10 +319,10 @@
             this.scooter = true; // Iterm cost and bonuses implemented
 
             this.goOutBonus = {
-              score: 30,
+              score: 500,
               tired: -20,
-              bored: -10,
-              lonely: -10
+              bored: 0,
+              lonely: 0
             };
             this.closeShop();
             this.showBonus('scooter');
@@ -334,8 +334,8 @@
             this.cooker = true; // Iterm cost and bonuses implemented
 
             this.cookBonus = {
-              score: 30,
-              tired: -20,
+              score: 300,
+              tired: 0,
               bored: -10,
               lonely: -10
             };
@@ -597,10 +597,10 @@
             this.$smartTv.innerText = 'Already Bought'; // Iterm cost and bonuses implemented
 
             this.tvBonus = {
-              score: 30,
-              tired: -20,
-              bored: -10,
-              lonely: -10
+              score: 50,
+              tired: 0,
+              bored: +20,
+              lonely: -0
             };
             this.closeShop();
             console.log('tv bought');
@@ -613,10 +613,10 @@
             this.smartPhone = true; // Iterm cost and bonuses implemented
 
             this.phoneBonus = {
-              score: 30,
-              tired: -20,
-              bored: -10,
-              lonely: -10
+              score: 200,
+              tired: -10,
+              bored: 0,
+              lonely: 0
             };
             this.closeShop();
             this.showBonus('smartPhone');
@@ -628,10 +628,10 @@
             this.scooter = true; // Iterm cost and bonuses implemented
 
             this.goOutBonus = {
-              score: 30,
+              score: 500,
               tired: -20,
-              bored: -10,
-              lonely: -10
+              bored: 0,
+              lonely: 0
             };
             this.closeShop();
             this.showBonus('scooter');
@@ -643,8 +643,8 @@
             this.cooker = true; // Iterm cost and bonuses implemented
 
             this.cookBonus = {
-              score: 30,
-              tired: -20,
+              score: 300,
+              tired: 0,
               bored: -10,
               lonely: -10
             };
@@ -679,7 +679,6 @@
         Starting cinematics
         Sounds
         Webview
-        Calibrer
         End of the game screen score recap
         Events
     */
@@ -710,7 +709,7 @@
         this.card = new Card(this);
         this.controls = new Controls(this); // Get variables
 
-        this.score = 50000;
+        this.score = 0;
         this.time = 0;
         this.tired = 0;
         this.bored = 0;
@@ -820,7 +819,7 @@
       tvAction() {
         if (this.tvActive === 0) {
           this.score += 100 + this.shop.tvBonus.score;
-          this.tired -= 30 + this.shop.tvBonus.tired;
+          this.tired -= 20 + this.shop.tvBonus.tired;
           this.bored += 20 + this.shop.tvBonus.bored;
           this.lonely += 20 + this.shop.tvBonus.lonely;
           this.changeValues();
@@ -842,9 +841,9 @@
       cookAction() {
         if (this.cookActive === 0) {
           this.score += 250 + this.shop.cookBonus.score;
-          this.tired += 20 + this.shop.cookBonus.tired;
-          this.bored -= 10 + this.shop.cookBonus.bored;
-          this.lonely += 10 + this.shop.cookBonus.lonely;
+          this.tired += 10 + this.shop.cookBonus.tired;
+          this.bored -= 30 + this.shop.cookBonus.bored;
+          this.lonely += 20 + this.shop.cookBonus.lonely;
           this.changeValues();
           this.setCoolDown('cook');
         }
@@ -854,7 +853,7 @@
         if (this.phoneActive === 0) {
           this.score += 400 + this.shop.phoneBonus.score;
           this.tired -= 20 + this.shop.phoneBonus.tired;
-          this.bored -= 10 + this.shop.phoneBonus.bored;
+          this.bored += 10 + this.shop.phoneBonus.bored;
           this.lonely -= 20 + this.shop.phoneBonus.lonely;
           this.changeValues();
           this.setCoolDown('phone');
@@ -882,12 +881,12 @@
       setCoolDown(action) {
         switch (action) {
           case 'tv':
-            this.tvActive = 1;
+            this.tvActive = 2;
             this.$tv.classList.add('disabled');
             break;
 
           case 'goOut':
-            this.goOutActive = 6;
+            this.goOutActive = 5;
             this.$goOut.classList.add('disabled');
             break;
 
@@ -897,7 +896,7 @@
             break;
 
           case 'phone':
-            this.phoneActive = 6;
+            this.phoneActive = 3;
             this.$phone.classList.add('disabled');
             break;
         }

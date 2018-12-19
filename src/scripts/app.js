@@ -3,7 +3,6 @@
     Starting cinematics
     Sounds
     Webview
-    Calibrer
     End of the game screen score recap
     Events
 */
@@ -34,7 +33,7 @@ class Game {
         this.controls = new Controls(this)
 
         // Get variables
-        this.score = 50000
+        this.score = 0
         this.time = 0
         this.tired = 0
         this.bored = 0
@@ -154,7 +153,7 @@ class Game {
     tvAction() {
         if (this.tvActive === 0) {
             this.score += 100 + this.shop.tvBonus.score
-            this.tired -= 30 + this.shop.tvBonus.tired
+            this.tired -= 20 + this.shop.tvBonus.tired
             this.bored += 20 + this.shop.tvBonus.bored
             this.lonely += 20 + this.shop.tvBonus.lonely
             this.changeValues()
@@ -176,9 +175,9 @@ class Game {
     cookAction() {
         if (this.cookActive === 0) {
             this.score += 250 + this.shop.cookBonus.score
-            this.tired += 20 + this.shop.cookBonus.tired
-            this.bored -= 10 + this.shop.cookBonus.bored
-            this.lonely += 10 + this.shop.cookBonus.lonely
+            this.tired += 10 + this.shop.cookBonus.tired
+            this.bored -= 30 + this.shop.cookBonus.bored
+            this.lonely += 20 + this.shop.cookBonus.lonely
             this.changeValues()
             this.setCoolDown('cook')
         }
@@ -188,7 +187,7 @@ class Game {
         if (this.phoneActive === 0) {
             this.score += 400 + this.shop.phoneBonus.score
             this.tired -= 20 + this.shop.phoneBonus.tired
-            this.bored -= 10 + this.shop.phoneBonus.bored
+            this.bored += 10 + this.shop.phoneBonus.bored
             this.lonely -= 20 + this.shop.phoneBonus.lonely
             this.changeValues()
             this.setCoolDown('phone')
@@ -213,11 +212,11 @@ class Game {
     setCoolDown(action) {
         switch (action) {
             case 'tv':
-                this.tvActive = 1
+                this.tvActive = 2
                 this.$tv.classList.add('disabled')
                 break
             case 'goOut':
-                this.goOutActive = 6
+                this.goOutActive = 5
                 this.$goOut.classList.add('disabled')
                 break
             case 'cook':
@@ -225,7 +224,7 @@ class Game {
                 this.$cook.classList.add('disabled')
                 break
             case 'phone':
-                this.phoneActive = 6
+                this.phoneActive = 3
                 this.$phone.classList.add('disabled')
                 break
         }

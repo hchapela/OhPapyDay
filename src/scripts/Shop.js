@@ -150,10 +150,10 @@ module.exports = class Shop {
 
                 // Iterm cost and bonuses implemented
                 this.tvBonus = {
-                    score: 30,
-                    tired: -20,
-                    bored: -10,
-                    lonely: -10
+                    score: 50,
+                    tired: 0,
+                    bored: +20,
+                    lonely: -0
                 }
                 this.closeShop()
                 console.log('tv bought');
@@ -166,10 +166,10 @@ module.exports = class Shop {
                 this.smartPhone = true
                 // Iterm cost and bonuses implemented
                 this.phoneBonus = {
-                    score: 30,
-                    tired: -20,
-                    bored: -10,
-                    lonely: -10
+                    score: 200,
+                    tired: -10,
+                    bored: 0,
+                    lonely: 0
                 }
                 this.closeShop()
                 this.showBonus('smartPhone')
@@ -181,10 +181,10 @@ module.exports = class Shop {
                 this.scooter = true
                 // Iterm cost and bonuses implemented
                 this.goOutBonus = {
-                    score: 30,
+                    score: 500,
                     tired: -20,
-                    bored: -10,
-                    lonely: -10
+                    bored: 0,
+                    lonely: 0
                 }
                 this.closeShop()
                 this.showBonus('scooter')
@@ -196,8 +196,8 @@ module.exports = class Shop {
                 this.cooker = true
                 // Iterm cost and bonuses implemented
                 this.cookBonus = {
-                    score: 30,
-                    tired: -20,
+                    score: 300,
+                    tired: 0,
                     bored: -10,
                     lonely: -10
                 }
