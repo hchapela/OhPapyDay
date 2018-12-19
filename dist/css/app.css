@@ -500,7 +500,7 @@ button.open-shop {
       background: #FFF;
       color: #bcbcbc;
       border: 2px solid #bcbcbc;
-      pointer: not-allowed; }
+      cursor: not-allowed; }
 
 .bonuses {
   display: -webkit-box;
@@ -515,3 +515,56 @@ button.open-shop {
     margin: 30px 15px; }
   .bonuses svg.hidden {
     opacity: 0.2; }
+
+.game-result {
+  width: 100vw;
+  height: 100vh;
+  color: #FFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .game-result .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .game-result .container .score {
+      font-size: 1.8rem;
+      color: #FFF; }
+      .game-result .container .score span {
+        font-size: 3.4rem;
+        font-weight: 700; }
+    .game-result .container button.replay {
+      font-size: 2.4rem;
+      padding: 15px;
+      outline: none;
+      background-color: #7D48FF;
+      border: none;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 9px #171738;
+              box-shadow: 0 9px #171738;
+      color: #FFF;
+      cursor: pointer; }
+      .game-result .container button.replay:active {
+        -webkit-transform: translateY(5px);
+                transform: translateY(5px); }
+  .game-result .container * {
+    margin: 10px 0; }
+
+.hidden {
+  display: none; }

@@ -1,0 +1,47 @@
+.game-result {
+  width: 100vw;
+  height: 100vh;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .score {
+      font-size:1.8rem;
+      color: $white;
+      span {
+        font-size: 3.4rem;
+        font-weight: 700;
+      }
+    }
+    button.replay {
+      font-size: 2.4rem;
+      padding: 15px;
+      outline: none;
+      background-color: $lightPurple;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 9px $darkPurple;
+      color: $white;
+      cursor: pointer;
+
+      &:active {
+          transform: translateY(5px);
+      }
+    }
+  }
+
+  .container * {
+    margin: 10px 0;
+  }
+
+}
+
+.hidden {
+  display: none;
+}

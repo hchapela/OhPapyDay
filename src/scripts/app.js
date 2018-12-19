@@ -4,16 +4,17 @@
     Sounds
     Webview
     End of the game screen score recap
+    change head of papy
     Events
 */
 
 const Shop = require('./Shop')
 const Card = require('./Card')
 const Controls = require('./Controls')
+const Result = require('./Result')
 
 class Game {
     constructor() {
-        console.log('New Game');
         // Get HTML Elements
         this.$statuses = document.querySelector('.js-statuses')
         this.$tired = this.$statuses.querySelector('.js-tired')
@@ -28,14 +29,18 @@ class Game {
         this.$cook = this.$controls.querySelector('.js-cook .activity')
         this.$goOut = this.$controls.querySelector('.js-go-out .activity')
         this.$phone = this.$controls.querySelector('.js-phone .activity')
+        this.$end = document.querySelector('.js-game-result')
+        this.shop = new Shop(this)
+
         this.shop = new Shop(this)
         this.card = new Card(this)
         this.controls = new Controls(this)
+        this.result = new Result(this)
 
         // Get variables
-        this.score = 0
+        this.score = 500000
         this.time = 0
-        this.tired = 0
+        this.tired = 99
         this.bored = 0
         this.lonely = 0
         this.difficulty = 1
@@ -135,8 +140,8 @@ class Game {
             this.tired + this.difficulty > 100 ||
             this.lonely + this.difficulty > 100
         ) {
-            window.clearInterval(this.isPlaying)
-            console.log('This is the end');
+            this.pause()
+            this.result.initResult()
         }
     }
 

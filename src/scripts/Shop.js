@@ -47,23 +47,15 @@ module.exports = class Shop {
     checkBuyable() {
       // Check if you have the money and don't have it already
       if(this.smartTv) {
-        console.log(this.$smartTv);
-
         this.$smartTv.classList.add('disabled')
         this.$smartTv.innerText = 'Already Bought'
       } else if(this.smartPhone) {
-        console.log(this.$smartPhone);
-
         this.$smartPhone.classList.add('disabled')
         this.$smartPhone.innerText = 'Already Bought'
       } else if(this.cooker) {
-        console.log(this.$cooker);
-
         this.$cooker.classList.add('disabled')
         this.$cooker.innerText = 'Already Bought'
       } else if(this.scooter) {
-        console.log(this.$scooter);
-
         this.$scooter.classList.add('disabled')
         this.$scooter.innerText = 'Already Bought'
       }
@@ -156,7 +148,6 @@ module.exports = class Shop {
                     lonely: -0
                 }
                 this.closeShop()
-                console.log('tv bought');
                 this.showBonus('smartTv')
             }
         })

@@ -147,6 +147,55 @@
   return s;
 })({
   1: [function (require, module, exports) {
+    module.exports = class Result {
+      constructor(_game) {
+        this.game = _game;
+        this.$result = document.querySelector('.js-game-result');
+        this.$score = this.$result.querySelector('.score p span');
+        this.$replay = this.$result.querySelector('button.replay');
+      }
+
+      initResult() {
+        this.$result.classList.remove('hidden');
+        this.$score.innerText = this.game.score;
+        console.log(this.$replay);
+        this.$replay.addEventListener('click', () => {
+          location.reload();
+        });
+      }
+
+    };
+  }, {}]
+}, {}, [1]);
+(function e(t, n, r) {
+  function s(o, u) {
+    if (!n[o]) {
+      if (!t[o]) {
+        var a = typeof require == "function" && require;
+        if (!u && a) return a(o, !0);
+        if (i) return i(o, !0);
+        throw new Error("Cannot find module '" + o + "'");
+      }
+
+      var f = n[o] = {
+        exports: {}
+      };
+      t[o][0].call(f.exports, function (e) {
+        var n = t[o][1][e];
+        return s(n ? n : e);
+      }, f, f.exports, e, t, n, r);
+    }
+
+    return n[o].exports;
+  }
+
+  var i = typeof require == "function" && require;
+
+  for (var o = 0; o < r.length; o++) s(r[o]);
+
+  return s;
+})({
+  1: [function (require, module, exports) {
     /* TODO
         show item bought bug
         show money in shop
@@ -189,19 +238,15 @@
       checkBuyable() {
         // Check if you have the money and don't have it already
         if (this.smartTv) {
-          console.log(this.$smartTv);
           this.$smartTv.classList.add('disabled');
           this.$smartTv.innerText = 'Already Bought';
         } else if (this.smartPhone) {
-          console.log(this.$smartPhone);
           this.$smartPhone.classList.add('disabled');
           this.$smartPhone.innerText = 'Already Bought';
         } else if (this.cooker) {
-          console.log(this.$cooker);
           this.$cooker.classList.add('disabled');
           this.$cooker.innerText = 'Already Bought';
         } else if (this.scooter) {
-          console.log(this.$scooter);
           this.$scooter.classList.add('disabled');
           this.$scooter.innerText = 'Already Bought';
         }
@@ -294,7 +339,6 @@
               lonely: -0
             };
             this.closeShop();
-            console.log('tv bought');
             this.showBonus('smartTv');
           }
         });
@@ -456,6 +500,26 @@
     };
   }, {}],
   3: [function (require, module, exports) {
+    module.exports = class Result {
+      constructor(_game) {
+        this.game = _game;
+        this.$result = document.querySelector('.js-game-result');
+        this.$score = this.$result.querySelector('.score p span');
+        this.$replay = this.$result.querySelector('button.replay');
+      }
+
+      initResult() {
+        this.$result.classList.remove('hidden');
+        this.$score.innerText = this.game.score;
+        console.log(this.$replay);
+        this.$replay.addEventListener('click', () => {
+          location.reload();
+        });
+      }
+
+    };
+  }, {}],
+  4: [function (require, module, exports) {
     /* TODO
         show item bought bug
         show money in shop
@@ -498,19 +562,15 @@
       checkBuyable() {
         // Check if you have the money and don't have it already
         if (this.smartTv) {
-          console.log(this.$smartTv);
           this.$smartTv.classList.add('disabled');
           this.$smartTv.innerText = 'Already Bought';
         } else if (this.smartPhone) {
-          console.log(this.$smartPhone);
           this.$smartPhone.classList.add('disabled');
           this.$smartPhone.innerText = 'Already Bought';
         } else if (this.cooker) {
-          console.log(this.$cooker);
           this.$cooker.classList.add('disabled');
           this.$cooker.innerText = 'Already Bought';
         } else if (this.scooter) {
-          console.log(this.$scooter);
           this.$scooter.classList.add('disabled');
           this.$scooter.innerText = 'Already Bought';
         }
@@ -603,7 +663,6 @@
               lonely: -0
             };
             this.closeShop();
-            console.log('tv bought');
             this.showBonus('smartTv');
           }
         });
@@ -673,13 +732,14 @@
 
     };
   }, {}],
-  4: [function (require, module, exports) {
+  5: [function (require, module, exports) {
     /* TODO
         Show cooldowns on buttons
         Starting cinematics
         Sounds
         Webview
         End of the game screen score recap
+        change head of papy
         Events
     */
     const Shop = require('./Shop');
@@ -688,10 +748,11 @@
 
     const Controls = require('./Controls');
 
+    const Result = require('./Result');
+
     class Game {
       constructor() {
-        console.log('New Game'); // Get HTML Elements
-
+        // Get HTML Elements
         this.$statuses = document.querySelector('.js-statuses');
         this.$tired = this.$statuses.querySelector('.js-tired');
         this.$bored = this.$statuses.querySelector('.js-bored');
@@ -705,13 +766,16 @@
         this.$cook = this.$controls.querySelector('.js-cook .activity');
         this.$goOut = this.$controls.querySelector('.js-go-out .activity');
         this.$phone = this.$controls.querySelector('.js-phone .activity');
+        this.$end = document.querySelector('.js-game-result');
+        this.shop = new Shop(this);
         this.shop = new Shop(this);
         this.card = new Card(this);
-        this.controls = new Controls(this); // Get variables
+        this.controls = new Controls(this);
+        this.result = new Result(this); // Get variables
 
-        this.score = 0;
+        this.score = 500000;
         this.time = 0;
-        this.tired = 0;
+        this.tired = 99;
         this.bored = 0;
         this.lonely = 0;
         this.difficulty = 1; // Fix scope issues with methods
@@ -802,8 +866,8 @@
 
       isLost() {
         if (this.bored + this.difficulty > 100 || this.tired + this.difficulty > 100 || this.lonely + this.difficulty > 100) {
-          window.clearInterval(this.isPlaying);
-          console.log('This is the end');
+          this.pause();
+          this.result.initResult();
         }
       }
 
@@ -909,6 +973,7 @@
   }, {
     "./Card": 1,
     "./Controls": 2,
-    "./Shop": 3
+    "./Result": 3,
+    "./Shop": 4
   }]
-}, {}, [4]);
+}, {}, [5]);
